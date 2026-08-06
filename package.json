@@ -1,6 +1,6 @@
 {
 	"name": "@gatewai.studio/artifex-skills",
-	"version": "1.0.139",
+	"version": "1.0.140",
 	"private": false,
 	"type": "module",
 	"description": "AI Agent skills and instructions for the Gatewai Artifex CLI and canvas workflow nodes",

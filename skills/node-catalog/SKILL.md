@@ -1,10 +1,8 @@
 ---
 name: node-catalog
 description: Authoritative catalog of all supported workflow canvas nodes, with links to their respective skills.
-triggers:
-  - "list nodes"
-  - "supported node types"
-  - "node catalog"
+metadata:
+  triggers: list nodes, supported node types, node catalog
 ---
 
 # Node Catalog
@@ -29,7 +27,7 @@ Apply a color lookup table (.cube) to media
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [ApplyLUT Skill](file:///packages/artifex-skills/skills/ApplyLUT/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [ApplyLUT Skill](file:///packages/artifex-skills/skills/apply-lut/SKILL.md).
 
 ---
 
@@ -49,7 +47,7 @@ Smooth out dynamic range and prevent audio clipping/distortion
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Compressor Skill](file:///packages/artifex-skills/skills/Compressor/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Compressor Skill](file:///packages/artifex-skills/skills/compressor/SKILL.md).
 
 ---
 
@@ -69,7 +67,7 @@ Add repeating echo effect for audio and video
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Delay Skill](file:///packages/artifex-skills/skills/Delay/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Delay Skill](file:///packages/artifex-skills/skills/delay/SKILL.md).
 
 ---
 
@@ -89,7 +87,7 @@ Applies a configurable gain envelope for audio and video.
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [AudioFade Skill](file:///packages/artifex-skills/skills/AudioFade/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [AudioFade Skill](file:///packages/artifex-skills/skills/audio-fade/SKILL.md).
 
 ---
 
@@ -109,7 +107,7 @@ Silence background noise and hum below a certain volume threshold
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [NoiseGate Skill](file:///packages/artifex-skills/skills/NoiseGate/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [NoiseGate Skill](file:///packages/artifex-skills/skills/noise-gate/SKILL.md).
 
 ---
 
@@ -129,7 +127,7 @@ Boost or cut specific frequency ranges using biquad IIR filters
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [ParametricEq Skill](file:///packages/artifex-skills/skills/ParametricEq/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [ParametricEq Skill](file:///packages/artifex-skills/skills/parametric-eq/SKILL.md).
 
 ---
 
@@ -149,7 +147,7 @@ Add room ambience and space to audio
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Reverb Skill](file:///packages/artifex-skills/skills/Reverb/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Reverb Skill](file:///packages/artifex-skills/skills/reverb/SKILL.md).
 
 ---
 
@@ -168,7 +166,7 @@ Apply blur to a media
 - **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Blur Skill](file:///packages/artifex-skills/skills/Blur/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Blur Skill](file:///packages/artifex-skills/skills/blur/SKILL.md).
 
 ---
 
@@ -185,7 +183,7 @@ _none_
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [CanvasGenerator Skill](file:///packages/artifex-skills/skills/CanvasGenerator/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [CanvasGenerator Skill](file:///packages/artifex-skills/skills/canvas-generator/SKILL.md).
 
 ---
 
@@ -204,7 +202,7 @@ Key out a color (chroma key) with spill suppression
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [ColorKey Skill](file:///packages/artifex-skills/skills/ColorKey/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [ColorKey Skill](file:///packages/artifex-skills/skills/color-key/SKILL.md).
 
 ---
 
@@ -221,7 +219,7 @@ _none_
 - **Dynamic inputs:** enabled (Text, Image, Video, Audio, Caption, SVG, GIF, Lottie)
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Compositor Skill](file:///packages/artifex-skills/skills/Compositor/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Compositor Skill](file:///packages/artifex-skills/skills/compositor/SKILL.md).
 
 ---
 
@@ -240,7 +238,7 @@ Four-point perspective warp
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [CornerPin Skill](file:///packages/artifex-skills/skills/CornerPin/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [CornerPin Skill](file:///packages/artifex-skills/skills/corner-pin/SKILL.md).
 
 ---
 
@@ -260,7 +258,7 @@ Crop media using rectangle, path, or ellipse
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Crop Skill](file:///packages/artifex-skills/skills/Crop/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Crop Skill](file:///packages/artifex-skills/skills/crop/SKILL.md).
 
 ---
 
@@ -279,7 +277,7 @@ Map tonal range and color balance using monotonic spline curves
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Curves Skill](file:///packages/artifex-skills/skills/Curves/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Curves Skill](file:///packages/artifex-skills/skills/curves/SKILL.md).
 
 ---
 
@@ -299,7 +297,7 @@ Distort media using a displacement map texture
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [DisplacementMap Skill](file:///packages/artifex-skills/skills/DisplacementMap/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [DisplacementMap Skill](file:///packages/artifex-skills/skills/displacement-map/SKILL.md).
 
 ---
 
@@ -318,7 +316,7 @@ Extract a single frame from a video, Lottie or GIF
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [ExtractFrame Skill](file:///packages/artifex-skills/skills/ExtractFrame/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [ExtractFrame Skill](file:///packages/artifex-skills/skills/extract-frame/SKILL.md).
 
 ---
 
@@ -338,7 +336,7 @@ Extract a 3D LUT from two frames
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [ExtractLUT Skill](file:///packages/artifex-skills/skills/ExtractLUT/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [ExtractLUT Skill](file:///packages/artifex-skills/skills/extract-lut/SKILL.md).
 
 ---
 
@@ -357,7 +355,7 @@ Apply organic, cinematic film grain texture to media
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [FilmGrain Skill](file:///packages/artifex-skills/skills/FilmGrain/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [FilmGrain Skill](file:///packages/artifex-skills/skills/film-grain/SKILL.md).
 
 ---
 
@@ -378,7 +376,7 @@ Render HTML, CSS, and GSAP animations to video
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [HTMLVideoRender Skill](file:///packages/artifex-skills/skills/HTMLVideoRender/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [HTMLVideoRender Skill](file:///packages/artifex-skills/skills/htmlvideo-render/SKILL.md).
 
 ---
 
@@ -397,7 +395,7 @@ Create a video using Ken Burns effect
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [KenBurns Skill](file:///packages/artifex-skills/skills/KenBurns/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [KenBurns Skill](file:///packages/artifex-skills/skills/ken-burns/SKILL.md).
 
 ---
 
@@ -416,7 +414,7 @@ Adjust tonal range and color balance with input/output levels
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Levels Skill](file:///packages/artifex-skills/skills/Levels/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Levels Skill](file:///packages/artifex-skills/skills/levels/SKILL.md).
 
 ---
 
@@ -435,7 +433,7 @@ Cut video, audio, lottie or gif by specifying start and end times.
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [MediaCut Skill](file:///packages/artifex-skills/skills/MediaCut/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [MediaCut Skill](file:///packages/artifex-skills/skills/media-cut/SKILL.md).
 
 ---
 
@@ -454,7 +452,7 @@ Warp media using a grid of control points
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [MeshWarp Skill](file:///packages/artifex-skills/skills/MeshWarp/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [MeshWarp Skill](file:///packages/artifex-skills/skills/mesh-warp/SKILL.md).
 
 ---
 
@@ -473,7 +471,7 @@ Apply Modulate adjustments to an image
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Modulate Skill](file:///packages/artifex-skills/skills/Modulate/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Modulate Skill](file:///packages/artifex-skills/skills/modulate/SKILL.md).
 
 ---
 
@@ -490,7 +488,7 @@ _none_
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [NoiseGenerator Skill](file:///packages/artifex-skills/skills/NoiseGenerator/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [NoiseGenerator Skill](file:///packages/artifex-skills/skills/noise-generator/SKILL.md).
 
 ---
 
@@ -510,7 +508,7 @@ Draw / Fill Mask on an media
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Paint Skill](file:///packages/artifex-skills/skills/Paint/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Paint Skill](file:///packages/artifex-skills/skills/paint/SKILL.md).
 
 ---
 
@@ -529,7 +527,7 @@ Adjust aspect ratios, scale resolution, crop, and pad image/video assets.
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [ResizerScaler Skill](file:///packages/artifex-skills/skills/ResizerScaler/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [ResizerScaler Skill](file:///packages/artifex-skills/skills/resizer-scaler/SKILL.md).
 
 ---
 
@@ -549,7 +547,7 @@ Balance audio output between left and right channels
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [StereoPanning Skill](file:///packages/artifex-skills/skills/StereoPanning/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [StereoPanning Skill](file:///packages/artifex-skills/skills/stereo-panning/SKILL.md).
 
 ---
 
@@ -569,7 +567,7 @@ Converts a video input to an audio output.
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [VideoToAudio Skill](file:///packages/artifex-skills/skills/VideoToAudio/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [VideoToAudio Skill](file:///packages/artifex-skills/skills/video-to-audio/SKILL.md).
 
 ---
 
@@ -588,7 +586,7 @@ Apply a classic vignette effect with dark corners to visual media
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Vignette Skill](file:///packages/artifex-skills/skills/Vignette/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Vignette Skill](file:///packages/artifex-skills/skills/vignette/SKILL.md).
 
 ---
 
@@ -611,7 +609,7 @@ Generate high-quality audio or speech using AI.
 - **Dynamic inputs:** enabled (Audio, Image)
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [AudioGenerator Skill](file:///packages/artifex-skills/skills/AudioGenerator/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [AudioGenerator Skill](file:///packages/artifex-skills/skills/audio-generator/SKILL.md).
 
 ---
 
@@ -633,7 +631,7 @@ Generate captions for audio or video using AI
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [CaptionGenerator Skill](file:///packages/artifex-skills/skills/CaptionGenerator/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [CaptionGenerator Skill](file:///packages/artifex-skills/skills/caption-generator/SKILL.md).
 
 ---
 
@@ -654,7 +652,7 @@ Generate a depth map from an image using AI
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [DepthMap Skill](file:///packages/artifex-skills/skills/DepthMap/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [DepthMap Skill](file:///packages/artifex-skills/skills/depth-map/SKILL.md).
 
 ---
 
@@ -676,7 +674,7 @@ Edit an existing video using AI.
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [VideoEdit Skill](file:///packages/artifex-skills/skills/VideoEdit/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [VideoEdit Skill](file:///packages/artifex-skills/skills/video-edit/SKILL.md).
 
 ---
 
@@ -699,7 +697,7 @@ Segment and extract an object from an image using a prompt
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [ExtractObject Skill](file:///packages/artifex-skills/skills/ExtractObject/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [ExtractObject Skill](file:///packages/artifex-skills/skills/extract-object/SKILL.md).
 
 ---
 
@@ -721,7 +719,7 @@ Prompt Agent to create animated motion videos
 - **Dynamic inputs:** enabled (Image, Video, SVG, Caption, Lottie)
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [HTMLVideoGen Skill](file:///packages/artifex-skills/skills/HTMLVideoGen/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [HTMLVideoGen Skill](file:///packages/artifex-skills/skills/htmlvideo-gen/SKILL.md).
 
 ---
 
@@ -743,7 +741,7 @@ Generate or edit an image using AI
 - **Dynamic inputs:** enabled (Image)
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [ImageGen Skill](file:///packages/artifex-skills/skills/ImageGen/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [ImageGen Skill](file:///packages/artifex-skills/skills/image-gen/SKILL.md).
 
 ---
 
@@ -766,7 +764,7 @@ Turns any avatar image into a talking video
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [LipSync Skill](file:///packages/artifex-skills/skills/LipSync/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [LipSync Skill](file:///packages/artifex-skills/skills/lip-sync/SKILL.md).
 
 ---
 
@@ -788,7 +786,7 @@ Prompt a large language model
 - **Dynamic inputs:** enabled (Image)
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [LLM Skill](file:///packages/artifex-skills/skills/LLM/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [LLM Skill](file:///packages/artifex-skills/skills/llm/SKILL.md).
 
 ---
 
@@ -810,7 +808,7 @@ Generate or Edit After Effect animations using an AI Agent.
 - **Dynamic inputs:** enabled (Image)
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [LottieGen Skill](file:///packages/artifex-skills/skills/LottieGen/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [LottieGen Skill](file:///packages/artifex-skills/skills/lottie-gen/SKILL.md).
 
 ---
 
@@ -831,7 +829,7 @@ Remove the background from an image using AI
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [RemoveBackground Skill](file:///packages/artifex-skills/skills/RemoveBackground/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [RemoveBackground Skill](file:///packages/artifex-skills/skills/remove-background/SKILL.md).
 
 ---
 
@@ -852,7 +850,7 @@ Cuts media to keep the parts where speech is detected.
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [SmartCut Skill](file:///packages/artifex-skills/skills/SmartCut/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [SmartCut Skill](file:///packages/artifex-skills/skills/smart-cut/SKILL.md).
 
 ---
 
@@ -873,7 +871,7 @@ Generate SVG vector graphics
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [SvgGen Skill](file:///packages/artifex-skills/skills/SvgGen/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [SvgGen Skill](file:///packages/artifex-skills/skills/svg-gen/SKILL.md).
 
 ---
 
@@ -895,7 +893,7 @@ Create speech from text
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [TextToSpeech Skill](file:///packages/artifex-skills/skills/TextToSpeech/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [TextToSpeech Skill](file:///packages/artifex-skills/skills/text-to-speech/SKILL.md).
 
 ---
 
@@ -916,7 +914,7 @@ Upscale and enhance image or video assets using AI.
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Upscaler Skill](file:///packages/artifex-skills/skills/Upscaler/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Upscaler Skill](file:///packages/artifex-skills/skills/upscaler/SKILL.md).
 
 ---
 
@@ -937,7 +935,7 @@ A video generation node.
 - **Dynamic inputs:** enabled (Image, Video, Audio)
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [VideoGen Skill](file:///packages/artifex-skills/skills/VideoGen/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [VideoGen Skill](file:///packages/artifex-skills/skills/video-gen/SKILL.md).
 
 ---
 
@@ -960,7 +958,7 @@ Generate videos using first and last frame images
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [VideoGenFirstLastFrame Skill](file:///packages/artifex-skills/skills/VideoGenFirstLastFrame/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [VideoGenFirstLastFrame Skill](file:///packages/artifex-skills/skills/video-gen-first-last-frame/SKILL.md).
 
 ---
 
@@ -982,7 +980,7 @@ Analyzes your video’s to generate a frame-synced soundtrack in seconds
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [VideoToMusic Skill](file:///packages/artifex-skills/skills/VideoToMusic/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [VideoToMusic Skill](file:///packages/artifex-skills/skills/video-to-music/SKILL.md).
 
 ---
 
@@ -1001,7 +999,7 @@ _none_
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [CaptionEditor Skill](file:///packages/artifex-skills/skills/CaptionEditor/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [CaptionEditor Skill](file:///packages/artifex-skills/skills/caption-editor/SKILL.md).
 
 ---
 
@@ -1019,7 +1017,7 @@ _none_
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Export Skill](file:///packages/artifex-skills/skills/Export/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Export Skill](file:///packages/artifex-skills/skills/export/SKILL.md).
 
 ---
 
@@ -1036,7 +1034,7 @@ _none_
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Import Skill](file:///packages/artifex-skills/skills/Import/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Import Skill](file:///packages/artifex-skills/skills/import/SKILL.md).
 
 ---
 
@@ -1053,7 +1051,7 @@ _none_
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Number Skill](file:///packages/artifex-skills/skills/Number/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Number Skill](file:///packages/artifex-skills/skills/number/SKILL.md).
 
 ---
 
@@ -1072,7 +1070,7 @@ _none_
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Recorder Skill](file:///packages/artifex-skills/skills/Recorder/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Recorder Skill](file:///packages/artifex-skills/skills/recorder/SKILL.md).
 
 ---
 
@@ -1089,7 +1087,7 @@ _none_
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Text Skill](file:///packages/artifex-skills/skills/Text/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Text Skill](file:///packages/artifex-skills/skills/text/SKILL.md).
 
 ---
 
@@ -1106,7 +1104,7 @@ _none_
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Note Skill](file:///packages/artifex-skills/skills/Note/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Note Skill](file:///packages/artifex-skills/skills/note/SKILL.md).
 
 ---
 
@@ -1123,7 +1121,7 @@ _none_
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [Preview Skill](file:///packages/artifex-skills/skills/Preview/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [Preview Skill](file:///packages/artifex-skills/skills/preview/SKILL.md).
 
 ---
 
@@ -1143,7 +1141,7 @@ Merges connected texts.
 - **Dynamic inputs:** enabled (Text)
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [TextMerger Skill](file:///packages/artifex-skills/skills/TextMerger/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [TextMerger Skill](file:///packages/artifex-skills/skills/text-merger/SKILL.md).
 
 ---
 
@@ -1162,7 +1160,7 @@ _none_
 - **Dynamic inputs:** no
 - **Dynamic outputs:** no
 
-For detailed usage rules, config parameters, and examples for this node, see [ProceduralSignal Skill](file:///packages/artifex-skills/skills/ProceduralSignal/SKILL.md).
+For detailed usage rules, config parameters, and examples for this node, see [ProceduralSignal Skill](file:///packages/artifex-skills/skills/procedural-signal/SKILL.md).
 
 ---
 

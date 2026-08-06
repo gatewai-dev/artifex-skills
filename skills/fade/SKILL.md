@@ -1,17 +1,9 @@
 ---
-name: Fade In / Fade Out
-nodeType: fade
-summary: >
-  Applies configurable volume fade-in (from silence) and fade-out (to silence) envelopes to audio and video.
-  Supports linear, exponential, and s-curve transitions. Implemented using WebGPU.
-triggers:
-  - fade
-  - fade in
-  - fade out
-  - audio fade
-  - crossfade
-  - volume envelope
-  - audio transition
+name: fade
+description: "Applies configurable volume fade-in (from silence) and fade-out (to silence) envelopes to audio and video. Supports linear, exponential, and s-curve transitions. Implemented using WebGPU."
+metadata:
+  nodeType: fade
+  triggers: "fade, fade in, fade out, audio fade, crossfade, volume envelope, audio transition"
 ---
 
 # Fade In / Fade Out
