@@ -18,7 +18,7 @@ Acts as the starting point for a canvas workflow. It allows users to upload loca
 This node does not have input handles as it represents the source upload mechanism.
 
 ## Config
-This node does not use configuration schemas; the asset is set via the UI upload interface.
+- **file**: (String, optional) The relative or absolute path to a local media file. This is used by the CLI to import the file and dynamically populate the node's result at runtime.
 
 ## Output
 | Handle | Type | Description |

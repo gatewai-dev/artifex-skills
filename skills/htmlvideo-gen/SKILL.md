@@ -42,6 +42,8 @@ For voiceovers, connecting caption reference of the voice is highly recommended 
 | `height` | Number | `720` | Canvas height in pixels (1 to 4096). |
 | `fps` | Number | `24` | Video frame rate (12 to 60 FPS). |
 | `durationSeconds` | Number | `5` | Video duration in seconds (0.5 to 30). |
+| `format` | Enum | `"mp4"` | Video output container format: `"mp4"` or `"webm"`. |
+| `transparent` | Boolean | `false` | Whether to render with a transparent background. Enabling this will capture frames as PNGs (instead of JPEGs) to retain alpha, and output WebM using the VP9 codec. |
 
 ---
 

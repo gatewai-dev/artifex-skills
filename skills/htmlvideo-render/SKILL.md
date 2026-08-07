@@ -29,7 +29,14 @@ It is completely configuration-less. The renderer automatically extracts design 
 
 ## 2. Config & Schema Properties
 
-The Motion Renderer is completely **configuration-less**. Viewport and duration properties are determined directly from:
+The Motion Renderer supports the following configuration properties:
+
+| Field | Type | Default | Description |
+|---|---|---|---|
+| `format` | Enum | `"mp4"` | Video output container format: `"mp4"` or `"webm"`. |
+| `transparent` | Boolean | `false` | Whether to render with a transparent background. Enabling this will capture frames as PNGs (instead of JPEGs) to retain alpha, and output WebM using the VP9 codec. |
+
+Viewport and duration properties are determined directly from:
 1. Target attributes in the HTML container (e.g. `data-width`, `data-height`, `data-duration`).
 2. Downstream `ffprobe` media inspection of the rendered output file.
 

@@ -387,7 +387,7 @@ Create a video using Ken Burns effect
 - **Inputs:**
 | Handle | Types | Required |
 |--------|-------|----------|
-| `Media` | Image, Video, SVG, GIF, Lottie | yes |
+| `Input` | Image, Video, SVG, GIF, Lottie | yes |
 - **Outputs:**
 | Handle | Types | Required |
 |--------|-------|----------|
@@ -644,7 +644,7 @@ Generate a depth map from an image using AI
 - **Inputs:**
 | Handle | Types | Required |
 |--------|-------|----------|
-| `Image` | Image | yes |
+| `Input` | Image | yes |
 - **Outputs:**
 | Handle | Types | Required |
 |--------|-------|----------|
