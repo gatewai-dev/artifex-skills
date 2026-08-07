@@ -34,7 +34,7 @@ This node uses **Variable Inputs**. You can add dynamically named input handles 
 | width | number | ≥1 | 1080 | Canvas width in pixels. |
 | height | number | ≥1 | 1080 | Canvas height in pixels. |
 | backgroundColor | string | Hex/RGB CSS Color | undefined | Background color of the compositor canvas. |
-| volume | number | 0–100 | undefined | Overall master audio volume scaling. |
+| volume | number | 1 | 1 | Overall master audio volume scaling. |
 | FPS | number | 1–120 | 24 | Frames per second for video output. |
 | layerUpdates | array | Array of Layer Objects | `[]` | Ordered list of layer settings, mapped via `inputHandleId` to the dynamic inputs. |
 
@@ -49,7 +49,7 @@ Each layer in `layerUpdates` supports:
 - **`blendMode`** (string): Standard HTML/Canvas blending or Porter-Duff composite operation. Supports blending modes (e.g., `multiply`, `screen`, `overlay`, `darken`, `lighten`) and compositing/masking operations (e.g., `source-over`, `destination-out` for text cutouts, `destination-in` for masking, `source-in`, `source-out`, `source-atop`, `destination-over`, `destination-atop`, `lighter`, `copy`, `xor`).
 - **`startFrame` / `durationInMS`**: Timing configurations. Note that `startFrame` is measured in frames (seconds * FPS of the canvas), while `durationInMS` and other duration/transition/trim properties are measured in milliseconds (ms).
 - **`trimStart` / `trimEnd`**: Trims the start/end duration of media layers (in ms).
-- **`volume`**: Volume level for audio/video layers (0 to 100).
+- **`volume`**: Volume level for audio/video layers (0 to 1).
 - **`hidden`** (boolean): Hides the layer visually during rendering.
 - **`muted`** (boolean): Mutes the audio track of the layer.
 - **`transition`** (object): Wipe or crossfade transitions between layers:

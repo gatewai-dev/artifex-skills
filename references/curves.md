@@ -32,9 +32,9 @@ The Color Curves node performs high-fidelity color grading and tonal adjustments
 | green | CurvePoint[] | linear | Green channel spline |
 | blue | CurvePoint[] | linear | Blue channel spline |
 | hueVsHue | CurvePoint[] | flat (y=0.5) | Hue rotation by input hue (Y=0.5 = no change) |
-| hueVsSat | CurvePoint[] | flat (y=0.5) | Saturation multiplier by input hue |
-| lumVsSat | CurvePoint[] | flat (y=0.5) | Saturation multiplier by luminance |
-| satVsSat | CurvePoint[] | flat (y=0.5) | Saturation remap by input saturation |
+| hueVsSat | CurvePoint[] | flat (y=1.0) | Saturation multiplier by input hue |
+| lumVsSat | CurvePoint[] | flat (y=1.0) | Saturation multiplier by luminance |
+| satVsSat | CurvePoint[] | flat (y=1.0) | Saturation remap by input saturation |
 
 ## Output
 | Handle | Type | Description |

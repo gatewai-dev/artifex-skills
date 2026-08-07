@@ -16,7 +16,7 @@ metadata:
 > ```
 > otherwise use existing tools to read skills.
 
-The **HTML Video Generator** node generates seekable HTML/CSS/GSAP animations using AI based on user text prompts and optional reference media (Images, Videos, SVGs, Captions, and Lottie animations). The generated HTML content is stored as an asset and rendered into an MP4 video.
+The **HTML Video Generator** node generates seekable HTML/CSS/GSAP/ThreeJS animations using AI based on user text prompts and optional reference media (Images, Videos, SVGs, Captions, and Lottie animations). The generated HTML content is stored as an asset and rendered into an MP4 video.
 
 For voiceovers, connecting caption reference of the voice is highly recommended to ensure the animation is synchronized with the voiceover.
 

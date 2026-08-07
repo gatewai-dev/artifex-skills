@@ -24,7 +24,7 @@ Adds a sense of space and acoustic ambience (reverberation) to audio. It simulat
 ## Config
 | Field | Type | Range | Default | Description |
 |-------|------|-------|---------|-------------|
-| roomSize | number | 0.0 to 1.0 | 0.5 | Size of the virtual room (reverb decay time). *Capped internally at 0.98 to avoid infinite feedback.* |
+| roomSize | number | 0.0 to 0.98 | 0.5 | Size of the virtual room (reverb decay time). *Capped internally at 0.98 to avoid infinite feedback.* |
 | damping | number | 0.0 to 1.0 | 0.5 | High-frequency absorption (damping of walls). Higher values result in a darker, warmer reverb sound. |
 | wet | number | 0.0 to 1.0 | 0.3 | Mix volume of the wet (reverberated) signal. |
 | dry | number | 0.0 to 1.0 | 1.0 | Mix volume of the original dry signal. |

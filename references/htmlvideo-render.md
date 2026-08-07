@@ -3,7 +3,7 @@ name: htmlvideo-render
 description: "Renders raw HTML/CSS/GSAP/ThreeJS compositions to high-quality MP4 videos using hyperframes. Includes input-level validations for structure, dependency loading, and animation compatibility."
 metadata:
   nodeType: HTMLVideoRender
-  triggers: "html video renderer, html renderer, render html to video, render code to video, render web page to video"
+  triggers: "html video renderer, compositor, html renderer, render html to video, render code to video, render web page to video"
 ---
 
 # HTML Video Renderer
@@ -15,6 +15,12 @@ npx hyperframes skills update
 otherwise use existing tools to read skills.
 
 It is completely configuration-less. The renderer automatically extracts design properties (viewport width/height, framerate, and duration) directly from the HTML elements/metadata at runtime or uses the probed video properties of the completed render.
+
+HTML Video Renderer is very capable animaiton compositor. Probably better than compositor node. After creating required assets, you can compose them using HTML Video Renderer with great animations. For filmmaking you can chose compositor node. If layer animation is important use this.
+
+Since this node has no dynamic inputs. You can use 2 different canvas specs. 
+First one to: Generate Assets.
+Second one to Compose Assets.
 
 ---
 

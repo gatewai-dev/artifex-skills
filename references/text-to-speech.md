@@ -12,7 +12,8 @@ metadata:
 Converts written text prompt inputs into natural-sounding spoken audio files. It connects to the Gemini TTS generation engine via Fal AI, allowing you to choose between various vocal tones, speeds, and languages.
 
 ## When to Use
-- **Voiceovers:** Generate narration or voiceovers for presentations, advertisements, and storytelling videos.
+- **Voiceovers:** Generate narration or voiceovers for presentations, advertisements, and storytelling videos. It is important to generate TTS first and then the video section underneath since output audio duration is non-deterministic. Then read the duration metadata and plan accordingly.
+
 - **Dynamic Dialogue:** Read out dynamically merged text or prompt sentences for video characters.
 - **Accessibility:** Create audio versions of text content.
 

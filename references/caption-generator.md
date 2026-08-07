@@ -27,9 +27,9 @@ Generates text transcriptions (subtitles) for input audio or video tracks using 
 |-------|------|-------|---------|-------------|
 | model | string (enum) | `fal-ai/whisper` | `"fal-ai/whisper"` | The AI model used for transcription. |
 | task | string | `"transcribe"` | `"transcribe"` | The transcription task to perform. |
-| language | string (enum) | Two-letter ISO language codes (e.g., `en`, `es`, `fr`, `tr`, `zh`, etc.) | undefined | Language of the audio. If not provided, the model will attempt to auto-detect the language. |
+| language | string (enum) | Two-letter ISO language codes (e.g., `en`, `es`, `fr`, `tr`, `zh`, etc.) | `"auto"` | Language of the audio. If not provided, the model will attempt to auto-detect the language. |
 | chunk_level | string (enum) | `segment`, `word` | `"segment"` | The granularity of transcription timestamps (by segment or word). |
-| batch_size | number | integer | 32 | Batch size for processing audio segments in parallel. |
+| batch_size | number | 1–256 | 32 | Batch size for processing audio segments in parallel. |
 
 ## Output
 | Handle | Type | Description |

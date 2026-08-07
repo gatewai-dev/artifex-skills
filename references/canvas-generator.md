@@ -31,7 +31,7 @@ None. This is a source/generator node that produces media from scratch.
 | gradientAngle | number | 0–360 | 180 | Angle in degrees for linear gradients. |
 | radialCenterX | number | 0.0–1.0 | 0.5 | X-coordinate of the radial gradient center. |
 | radialCenterY | number | 0.0–1.0 | 0.5 | Y-coordinate of the radial gradient center. |
-| radialRadius | number | 0.0–1.0 | 0.5 | Radius of the radial gradient. |
+| radialRadius | number | 0.0–2.0 | 0.5 | Radius of the radial gradient. |
 
 ## Output
 | Handle | Type | Description |
