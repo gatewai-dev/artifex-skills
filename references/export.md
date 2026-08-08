@@ -35,6 +35,9 @@ This is a **Terminal Node**; it does not have output handles, as its result is c
 > [!IMPORTANT]
 > **Even Dimension Requirement:**
 > For video and GIF exports, the input media's dimensions (width and height) must be **even numbers** (e.g. 1920x1080). Odd dimensions (e.g., 1081px height) will fail validation because standard video encoders (like H.264/MP4) require even-aligned pixel grids. Static image exports, SVG, and audio-only exports do not require even dimensions. Adjust upstream Crop, Resize, or Compositor settings to resolve.
+>
+> **GIF Duration Limit:**
+> Animated GIF exports are limited to a maximum duration of **15 seconds**. If your media exceeds 15 seconds, trim the source before exporting as a GIF or choose another export format.
 
 ### Pricing Logic
 - **Minimum cost:** **20 credits** per render - direct downloads are free.

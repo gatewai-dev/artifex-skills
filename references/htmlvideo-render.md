@@ -18,6 +18,10 @@ It is completely configuration-less. The renderer automatically extracts design 
 
 HTML Video Renderer is very capable animaiton compositor. Probably better than compositor node. After creating required assets, you can compose them using HTML Video Renderer with great animations. For filmmaking you can chose compositor node. If layer animation is important use this.
 
+Do not use base64 for images or videos inside composition. Use file path or url if exists.
+
+Do not use defer for gsap or other main scripts.
+
 Since this node has no dynamic inputs. You can use 2 different canvas specs. 
 First one to: Generate Assets.
 Second one to Compose Assets.
@@ -128,3 +132,15 @@ To build robust, seekable, and beautiful animations that compile frame-accuratel
   * Two.js CDN: `<script src="https://cdn.jsdelivr.net/npm/two.js@0.8.10/build/two.min.js" defer></script>`
   * Paper.js CDN: `<script src="https://cdn.jsdelivr.net/npm/paper@0.12.17/dist/paper-full.min.js" defer></script>`
   * Seekability Rule: Manually call `two.update()` or `paper.view.draw()` in the GSAP `onUpdate` callback.
+
+
+## 7. Referencing Files:
+
+You can reference a local image using a relative path directly in the src attribute of an <img> tag. Place your image inside the project (e.g. an assets/ folder) and reference it like:
+
+<img src="assets/my-image.png" alt="description" />
+Paths resolve from the project root. You can also bind it to a variable:
+
+<img data-var-src="logo" src="assets/logo.svg" alt="" />
+
+If you want to reference a transistent node's output, it should be rendered first.

@@ -1,6 +1,6 @@
 ---
 name: video-gen
-description: "Generates AI videos from text prompts and optional reference inputs (Images, Videos, or Audio) using advanced models like Wan 2.7 and Seedance 2.0. Supports customized resolution, aspect ratios, seeds, and durations."
+description: "Generates AI videos from text prompts and optional reference inputs (Images, Videos, or Audio) using advanced models like Wan 2.7, Seedance 2.0, and Seedance 2.5. Supports customized resolution, aspect ratios, seeds, and durations."
 metadata:
   nodeType: VideoGen
   triggers: "video generator, generate video, text to video, image to video, reference to video, ai video, seedance, wan video, gemini video, gemini omni flash"
@@ -29,12 +29,21 @@ This node also supports **Variable Inputs** (enable/add from the canvas) of the 
 ## Config
 The config is structured dynamically via a union on the chosen **`model`**:
 
-### 1. Seedance Models (`bytedance/seedance-2.0/reference-to-video` or `.../fast/...`)
+### 1. Seedance 2.0 Models (`bytedance/seedance-2.0/reference-to-video` or `.../fast/...`)
 | Field | Type | Range / Options | Default | Description |
 |-------|------|-----------------|---------|-------------|
 | seedanceAspectRatio | string | `auto`, `21:9`, `16:9`, `4:3`, `1:1`, `3:4`, `9:16` | `auto` | Video aspect ratio. |
 | seedanceResolution | string | `480p`, `720p`, `1080p` | `720p` | Output video resolution. |
 | seedanceDurationSeconds | string | `4` to `15` | `8` | Generation duration in seconds. |
+| seedanceGenerateAudio | boolean | `true`, `false` | `true` | When true, generates accompanying audio sync. |
+| seedanceSeed | number | `0` to `2147483646` | undefined | Seed for reproducible output. |
+
+### 1b. Seedance 2.5 Models (`bytedance/seedance-2.5/text-to-video` or `.../reference-to-video`)
+| Field | Type | Range / Options | Default | Description |
+|-------|------|-----------------|---------|-------------|
+| seedanceAspectRatio | string | `auto`, `21:9`, `16:9`, `4:3`, `1:1`, `3:4`, `9:16` | `auto` | Video aspect ratio. |
+| seedanceResolution | string | `480p`, `720p` | `720p` | Output video resolution. |
+| seedanceDurationSeconds | string | `4` to `30` | `10` | Generation duration in seconds. |
 | seedanceGenerateAudio | boolean | `true`, `false` | `true` | When true, generates accompanying audio sync. |
 | seedanceSeed | number | `0` to `2147483646` | undefined | Seed for reproducible output. |
 

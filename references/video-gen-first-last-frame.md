@@ -26,14 +26,23 @@ Generates an AI video transition that begins exactly at a specified "First Frame
 ## Config
 The configuration fields depend on the selected **`model`**:
 
-### 1. Seedance Image-to-Video (`bytedance/seedance-2.0/image-to-video`)
+### 1. Seedance 2.0 Image-to-Video (`bytedance/seedance-2.0/image-to-video`)
 | Field | Type | Range / Options | Default | Description |
 |-------|------|-----------------|---------|-------------|
 | falAspectRatio | string | `auto`, `21:9`, `16:9`, `4:3`, `1:1`, `3:4`, `9:16` | `auto` | Aspect ratio of the output video. |
 | falResolution | string | `480p`, `720p`, `1080p`, `4k` | `720p` | Output video resolution. |
-| falDurationSeconds | string | `auto`, `4` to `15` | `auto` | Duration of the generated clip in seconds. |
+| falDurationSeconds | string | `4` to `15` | `8` | Duration of the generated clip in seconds. |
 | falGenerateAudio | boolean | `true`, `false` | `true` | When true, generates accompanying audio sync. |
 | falBitrateMode | string | `standard`, `high` | `standard` | Output encoding quality/bitrate mode. |
+| falSeed | number | Any integer | undefined | Seed for reproducible output. |
+
+### 1b. Seedance 2.5 Image-to-Video (`bytedance/seedance-2.5/image-to-video`)
+| Field | Type | Range / Options | Default | Description |
+|-------|------|-----------------|---------|-------------|
+| falAspectRatio | string | `auto` | `auto` | Always `auto` for image-to-video. |
+| falResolution | string | `480p`, `720p` | `720p` | Output video resolution. |
+| falDurationSeconds | string | `4` to `30` | `10` | Duration of the generated clip in seconds. |
+| falGenerateAudio | boolean | `true`, `false` | `true` | When true, generates accompanying audio sync. |
 | falSeed | number | Any integer | undefined | Seed for reproducible output. |
 
 ### 2. MiniMax Image-to-Video (`minimax/h3/image-to-video`)
