@@ -21,14 +21,17 @@ Applies frequency equalization to an audio stream using a biquad IIR filter. You
 | Handle | Type | Required | Description |
 |--------|------|----------|-------------|
 | Input | Audio, Video | ✅ | The source media containing the audio stream to equalize. |
+| Frequency Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating filter frequency in Hz. |
+| Gain Boost / Cut Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating filter gain in dB. |
+| Q (Resonance) Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating filter Q bandwidth factor. |
 
 ## Config
 | Field | Type | Range | Default | Description |
 |-------|------|-------|---------|-------------|
 | type | string | `lowShelf`, `highShelf`, `peak`, `lowPass`, `highPass`, `notch` | `peak` | The type of biquad filter. |
-| frequency | number | 20 to 20000 | 1000 | Center/cutoff frequency in Hz. |
-| gain | number | -24 to +24 | 0 | Gain adjustment in dB. *Unused for lowPass, highPass, and notch.* |
-| q | number | 0.01 to 10.0 | 1.0 | Resonance or bandwidth width of the filter. Higher values result in narrower bands or steeper slopes. |
+| frequency | number | 20 to 20000 | 1000 | Center/cutoff frequency in Hz. Bindable to Signal/Number. |
+| gain | number | -24 to +24 | 0 | Gain adjustment in dB. *Unused for lowPass, highPass, and notch.* Bindable to Signal/Number. |
+| q | number | 0.01 to 10.0 | 1.0 | Resonance or bandwidth width of the filter. Bindable to Signal/Number. |
 
 ## Output
 | Handle | Type | Description |

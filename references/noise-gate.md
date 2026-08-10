@@ -20,15 +20,20 @@ Mutes or attenuates audio signals that fall below a specified volume threshold. 
 | Handle | Type | Required | Description |
 |--------|------|----------|-------------|
 | Input | Audio, Video | ✅ | The source media containing the audio stream to clean. |
+| Threshold Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating noise gate threshold level. |
+| Attack Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating gate attack duration. |
+| Hold Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating gate hold duration. |
+| Release Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating gate release duration. |
+| Floor Range Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating closed gate floor level. |
 
 ## Config
 | Field | Type | Range | Default | Description |
 |-------|------|-------|---------|-------------|
-| threshold | number | -120 to 0 | -40 | The volume level (dBFS) below which the gate begins to close. |
-| attack | number | 0.0001 to 1.0 | 0.005 | Time in seconds to open (fade in) the gate when the signal exceeds the threshold. |
-| hold | number | 0.001 to 5.0 | 0.05 | Time in seconds the gate stays fully open after the signal drops below the threshold. |
-| release | number | 0.01 to 5.0 | 0.1 | Time in seconds to close (fade out) the gate after the hold period expires. |
-| range | number | -120 to 0 | -80 | The volume level (dBFS) floor when the gate is closed. Set low (e.g. -80 or -120) to fully mute, or higher to allow faint room tone. |
+| threshold | number | -120 to 0 | -40 | The volume level (dBFS) below which the gate begins to close. Bindable to Signal/Number. |
+| attack | number | 0.0001 to 1.0 | 0.005 | Time in seconds to open (fade in) the gate when the signal exceeds the threshold. Bindable to Signal/Number. |
+| hold | number | 0.001 to 5.0 | 0.05 | Time in seconds the gate stays fully open after the signal drops below the threshold. Bindable to Signal/Number. |
+| release | number | 0.01 to 5.0 | 0.1 | Time in seconds to close (fade out) the gate after the hold period expires. Bindable to Signal/Number. |
+| range | number | -120 to 0 | -80 | The volume level (dBFS) floor when the gate is closed. Bindable to Signal/Number. |
 
 ## Output
 | Handle | Type | Description |

@@ -49,7 +49,6 @@ The Color Curves node performs high-fidelity color grading and tonal adjustments
 - **Ghost overlay:** All inactive RGB channel curves shown at 25% opacity.
 
 ## UI Features
-- **Eyedropper:** Click to activate, then click a canvas pixel; places a control point at the sampled channel value.
 - **Ghost curves:** Inactive channels rendered as faint overlay lines.
 - **Live histogram:** Real-time GPU-computed histogram shown as colored area behind the curve.
 - **Keyboard:** Arrow keys to nudge (Shift=10×, Alt=0.1×), Tab to cycle points, Delete to remove.
@@ -63,5 +62,4 @@ The Color Curves node performs high-fidelity color grading and tonal adjustments
 ## Limitations
 - First and last points on each curve are locked to x=0 and x=1.
 - Intermediate points must remain sorted along X.
-- Eyedropper requires the canvas renderer to dispatch `gatewai:pixel-sample` CustomEvent with `{r, g, b}` detail in [0,1] range.
 - HSL secondary curves apply in non-linear sRGB space (no linearization).

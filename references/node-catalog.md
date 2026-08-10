@@ -7,7 +7,7 @@ metadata:
 
 # Node Catalog
 
-Authoritative capabilities of every registered node. Input/output handles and dynamic (variable) inputs/outputs are read directly from each node manifest at build time — the same data `artifex nodes --json` reports. Featured nodes (58).
+Authoritative capabilities of every registered node. Input/output handles and dynamic (variable) inputs/outputs are read directly from each node manifest at build time — the same data `artifex nodes --json` reports. Featured nodes (57).
 
 ### Media
 
@@ -44,7 +44,7 @@ Smooth out dynamic range and prevent audio clipping/distortion
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Audio, Video | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [Compressor Reference](file:///packages/artifex-skills/references/compressor.md).
@@ -64,7 +64,7 @@ Add repeating echo effect for audio and video
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Audio, Video | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [Delay Reference](file:///packages/artifex-skills/references/delay.md).
@@ -84,7 +84,7 @@ Applies a configurable gain envelope for audio and video.
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Audio, Video | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [AudioFade Reference](file:///packages/artifex-skills/references/audio-fade.md).
@@ -104,7 +104,7 @@ Silence background noise and hum below a certain volume threshold
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Audio, Video | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [NoiseGate Reference](file:///packages/artifex-skills/references/noise-gate.md).
@@ -124,7 +124,7 @@ Boost or cut specific frequency ranges using biquad IIR filters
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Audio, Video | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [ParametricEq Reference](file:///packages/artifex-skills/references/parametric-eq.md).
@@ -144,7 +144,7 @@ Add room ambience and space to audio
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Audio, Video | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [Reverb Reference](file:///packages/artifex-skills/references/reverb.md).
@@ -356,27 +356,6 @@ Apply organic, cinematic film grain texture to media
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [FilmGrain Reference](file:///packages/artifex-skills/references/film-grain.md).
-
----
-
-#### Motion Renderer (`HTMLVideoRender`)
-
-Render HTML, CSS, and GSAP animations to video
-
-- **Category:** Video
-- **Terminal node:** produces a final renderable output
-- **Inputs:**
-| Handle | Types | Required |
-|--------|-------|----------|
-| `HTML` | Text | yes |
-- **Outputs:**
-| Handle | Types | Required |
-|--------|-------|----------|
-| `Video Result` | Video | no |
-- **Dynamic inputs:** no
-- **Dynamic outputs:** no
-
-For detailed usage rules, config parameters, and examples for this node, see [HTMLVideoRender Reference](file:///packages/artifex-skills/references/htmlvideo-render.md).
 
 ---
 
@@ -698,28 +677,6 @@ Segment and extract an object from an image using a prompt
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [ExtractObject Reference](file:///packages/artifex-skills/references/extract-object.md).
-
----
-
-#### Motion Video Generator (`HTMLVideoGen`)
-
-Prompt Agent to create animated motion videos
-
-- **Category:** Video
-- **Terminal node:** produces a final renderable output
-- **Inputs:**
-| Handle | Types | Required |
-|--------|-------|----------|
-| `Prompt` | Text | yes |
-- **Outputs:**
-| Handle | Types | Required |
-|--------|-------|----------|
-| `HTML Result` | Text | no |
-| `Video Result` | Video | no |
-- **Dynamic inputs:** enabled (Image, Video, SVG, Caption, Lottie)
-- **Dynamic outputs:** no
-
-For detailed usage rules, config parameters, and examples for this node, see [HTMLVideoGen Reference](file:///packages/artifex-skills/references/htmlvideo-gen.md).
 
 ---
 
@@ -1088,6 +1045,22 @@ _none_
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [Text Reference](file:///packages/artifex-skills/references/text.md).
+
+---
+
+#### Webhook (`Webhook`)
+
+Sends workflow outputs to an external URL as a JSON web request.
+
+- **Terminal node:** produces a final renderable output
+- **Inputs:**
+_none_
+- **Outputs:**
+_none_
+- **Dynamic inputs:** enabled (Text, Image, Video, Audio, Caption, SVG, GIF, Lottie)
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [Webhook Reference](file:///packages/artifex-skills/references/webhook.md).
 
 ---
 

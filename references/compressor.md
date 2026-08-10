@@ -20,16 +20,22 @@ Smooths out the dynamic range of an audio or video soundtrack. It lowers the vol
 | Handle | Type | Required | Description |
 |--------|------|----------|-------------|
 | Input | Audio, Video | ✅ | The source media containing the audio stream to be compressed. |
+| Threshold Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating the threshold level. |
+| Ratio Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating the compression ratio. |
+| Attack Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating attack time in seconds. |
+| Release Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating release time in seconds. |
+| Knee Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating soft-knee dB range. |
+| Makeup Gain Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating makeup gain level. |
 
 ## Config
 | Field | Type | Range | Default | Description |
 |-------|------|-------|---------|-------------|
-| threshold | number | -60 to 0 | -24 | Level (dBFS) above which gain reduction begins. |
-| ratio | number | 1 to 100 | 4 | Input-to-output gain ratio above threshold. Use high values (e.g., 100) for limiting. |
-| attack | number | 0.0001 to 1.0 | 0.003 | Time in seconds to reach full gain reduction. |
-| release | number | 0.01 to 5.0 | 0.25 | Time in seconds to recover gain after the signal level drops. |
-| knee | number | 0 to 24 | 6 | Range in dB for the soft-knee transition curve around the threshold. |
-| makeupGain | number | 0 to 24 | 0 | Gain in dBFS applied to the signal after compression. |
+| threshold | number | -60 to 0 | -24 | Level (dBFS) above which gain reduction begins. Bindable to Signal/Number. |
+| ratio | number | 1 to 100 | 4 | Input-to-output gain ratio above threshold. Use high values (e.g., 100) for limiting. Bindable to Signal/Number. |
+| attack | number | 0.0001 to 1.0 | 0.003 | Time in seconds to reach full gain reduction. Bindable to Signal/Number. |
+| release | number | 0.01 to 5.0 | 0.25 | Time in seconds to recover gain after the signal level drops. Bindable to Signal/Number. |
+| knee | number | 0 to 24 | 6 | Range in dB for the soft-knee transition curve around the threshold. Bindable to Signal/Number. |
+| makeupGain | number | 0 to 24 | 0 | Gain in dBFS applied to the signal after compression. Bindable to Signal/Number. |
 
 ## Output
 | Handle | Type | Description |

@@ -23,16 +23,22 @@ Applies a digital blur effect to input visual media (Image, SVG, Video, Lottie, 
 |--------|------|----------|-------------|
 | Input | Image, SVG, Video, Lottie, GIF | ✅ | The media to apply the blur effect to |
 | Strength Signal | Number, Signal | ❌ | Optional signal or number to dynamically modulate the blur strength |
+| Color Sigma Signal | Number, Signal | ❌ | Optional signal or number to dynamically modulate color sigma |
+| Center X Signal | Number, Signal | ❌ | Optional signal or number to dynamically modulate center X position |
+| Center Y Signal | Number, Signal | ❌ | Optional signal or number to dynamically modulate center Y position |
+| Partial Radius Signal | Number, Signal | ❌ | Optional signal or number to dynamically modulate partial blur radius |
 
 ## Config
 | Field | Type | Range | Default | Description |
 |-------|------|-------|---------|-------------|
 | blurType | string (enum) | Gaussian, Box, Median, Motion, Bilateral, Edge-preserving, Radial, Zoom | "Gaussian" | The algorithm used to calculate the blur. |
-| strength | number | 0–100 | 5 | The intensity of the blur. 0 = no blur. Bindable to Signal/Number for animated transitions. |
+| strength | number | 0–100 (varies by type) | 5 | Intensity of blur (Gaussian/Box/Radial/Zoom: 0–100, Motion: 0–64, Bilateral: 0–32, Median: 0–15, Edge-preserving: 1–10). |
 | angle | number | 0–360 | 0 | The angle of direction for Motion blur (in degrees). |
 | sigmaColor | number | 0.01–1.0 | 0.1 | Sigma value for color space in Bilateral / Edge-preserving blurs. High values mix farther colors. |
-| centerX | number | 0–1.0 | 0.5 | Normalized horizontal center coordinate (0 to 1) for Radial and Zoom blurs. |
-| centerY | number | 0–1.0 | 0.5 | Normalized vertical center coordinate (0 to 1) for Radial and Zoom blurs. |
+| centerX | number | 0–1.0 | 0.5 | Normalized horizontal center coordinate (0 to 1) for Radial, Zoom, and Partial blurs. |
+| centerY | number | 0–1.0 | 0.5 | Normalized vertical center coordinate (0 to 1) for Radial, Zoom, and Partial blurs. |
+| partialBlur | boolean | true/false | false | Blurs only a circular region around (centerX, centerY). |
+| radius | number | 0.01–1.0 | 0.3 | Radius of the partial blur region (0.01 to 1.0). |
 
 ## Output
 | Handle | Type | Description |
@@ -44,8 +50,9 @@ Applies a digital blur effect to input visual media (Image, SVG, Video, Lottie, 
 - **Background Defocus / Layering:** `Import (image) → Resize/Crop → Blur (high strength) → Compositor (background)`
 - **Action/Speed Effect:** `Import (video) → Blur (blurType: Motion, strength: 15, angle: 90) → Export`
 - **Vignette/Focus Pull:** `Import (image) → Blur (blurType: Zoom/Radial, centerX: 0.5, centerY: 0.5) → Export`
+- **Spot / Region Obfuscation:** `Import (image) → Blur (partialBlur: true, radius: 0.25, centerX: 0.5, centerY: 0.5)`
 
 ## Limitations
-- Strength values are capped at 100.
-- Radial and Zoom blurs calculate their center relative to the width and height using normalized `centerX`/`centerY` coordinates.
+- Strength values are capped at 100 (with max 64 for Motion, 32 for Bilateral, 15 for Median, 10 for Edge-preserving).
+- Radial, Zoom, and Partial blurs calculate their center relative to width and height using normalized `centerX`/`centerY` coordinates. Interactive canvas handles appear on screen to drag center position and view partial radius.
 - Bilateral and Edge-preserving blurs are computationally more expensive and may impact rendering performance.

@@ -20,14 +20,18 @@ Adds a repeating echo effect to audio tracks. It stores incoming audio frames in
 | Handle | Type | Required | Description |
 |--------|------|----------|-------------|
 | Input | Audio, Video | ✅ | The source media containing the audio stream to apply the delay effect to. |
+| Delay Time Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating delay time in seconds. |
+| Feedback Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating delay feedback. |
+| Wet Mix Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating wet mix level. |
+| Dry Mix Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating dry mix level. |
 
 ## Config
 | Field | Type | Range | Default | Description |
 |-------|------|-------|---------|-------------|
-| delayTime | number | 0.0 to 5.0 | 0.25 | The delay duration in seconds before the echo is heard. |
-| feedback | number | 0.0 to 0.95 | 0.4 | Amount of the delayed signal fed back into the delay ring buffer. |
-| wet | number | 0.0 to 1.0 | 0.3 | Volume level of the delayed wet signal. |
-| dry | number | 0.0 to 1.0 | 1.0 | Volume level of the original dry signal. |
+| delayTime | number | 0.001 to 5.0 | 0.25 | The delay duration in seconds before the echo is heard. Bindable to Signal/Number. |
+| feedback | number | 0.0 to 0.95 | 0.4 | Amount of the delayed signal fed back into the delay ring buffer. Bindable to Signal/Number. |
+| wet | number | 0.0 to 1.0 | 0.3 | Volume level of the delayed wet signal. Bindable to Signal/Number. |
+| dry | number | 0.0 to 1.0 | 1.0 | Volume level of the original dry signal. Bindable to Signal/Number. |
 | pingPong | boolean | true/false | false | Alternates the echo feedback loop between the left and right channels (requires a stereo input). |
 
 ## Output

@@ -20,15 +20,20 @@ Adds a sense of space and acoustic ambience (reverberation) to audio. It simulat
 | Handle | Type | Required | Description |
 |--------|------|----------|-------------|
 | Input | Audio, Video | ✅ | The source media containing the audio track to reverberate. |
+| Room Size Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating room decay size. |
+| Damping Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating high-frequency absorption damping. |
+| Wet Mix Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating wet reverb level. |
+| Dry Mix Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating dry signal level. |
+| Stereo Width Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating stereo width spread. |
 
 ## Config
 | Field | Type | Range | Default | Description |
 |-------|------|-------|---------|-------------|
-| roomSize | number | 0.0 to 0.98 | 0.5 | Size of the virtual room (reverb decay time). *Capped internally at 0.98 to avoid infinite feedback.* |
-| damping | number | 0.0 to 1.0 | 0.5 | High-frequency absorption (damping of walls). Higher values result in a darker, warmer reverb sound. |
-| wet | number | 0.0 to 1.0 | 0.3 | Mix volume of the wet (reverberated) signal. |
-| dry | number | 0.0 to 1.0 | 1.0 | Mix volume of the original dry signal. |
-| width | number | 0.0 to 1.0 | 1.0 | Stereo spread width of the reverb tail. |
+| roomSize | number | 0.0 to 0.98 | 0.5 | Size of the virtual room (reverb decay time). Bindable to Signal/Number. |
+| damping | number | 0.0 to 1.0 | 0.5 | High-frequency absorption (damping of walls). Bindable to Signal/Number. |
+| wet | number | 0.0 to 1.0 | 0.3 | Mix volume of the wet (reverberated) signal. Bindable to Signal/Number. |
+| dry | number | 0.0 to 1.0 | 1.0 | Mix volume of the original dry signal. Bindable to Signal/Number. |
+| width | number | 0.0 to 1.0 | 1.0 | Stereo spread width of the reverb tail. Bindable to Signal/Number. |
 
 ## Output
 | Handle | Type | Description |

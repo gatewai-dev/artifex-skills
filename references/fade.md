@@ -20,12 +20,14 @@ Applies a gain envelope to the audio track of a video or audio file. It smoothly
 | Handle | Type | Required | Description |
 |--------|------|----------|-------------|
 | Input | Audio, Video | ✅ | The source media containing the audio stream to fade. |
+| Fade In Duration Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating fade-in duration. |
+| Fade Out Duration Signal | Number, Signal | ❌ | Dynamic signal or static number handle modulating fade-out duration. |
 
 ## Config
 | Field | Type | Range | Default | Description |
 |-------|------|-------|---------|-------------|
-| fadeInDuration | number | 0.0 to 60.0 | 0.0 | Duration of the fade-in envelope in seconds. |
-| fadeOutDuration | number | 0.0 to 60.0 | 0.0 | Duration of the fade-out envelope in seconds. |
+| fadeInDuration | number | 0.0 to 60.0 | 0.0 | Duration of the fade-in envelope in seconds. Bindable to Signal/Number. |
+| fadeOutDuration | number | 0.0 to 60.0 | 0.0 | Duration of the fade-out envelope in seconds. Bindable to Signal/Number. |
 | fadeInCurve | string (enum) | `linear`, `exponential`, `scurve` | `"linear"` | The shape of the fade-in volume transition. |
 | fadeOutCurve | string (enum) | `linear`, `exponential`, `scurve` | `"linear"` | The shape of the fade-out volume transition. |
 
