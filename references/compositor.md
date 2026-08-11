@@ -1,21 +1,26 @@
 ---
 name: compositor
-description: "Composes multiple media layers (Text, Image, SVG, Audio, Caption, Video, GIF, and Lottie) into a single image or video file. Supports layer positioning, timing, opacity, blending, keyframe animations, volume, and timeline segments."
+description: "Composes media inputs (Text, Image, SVG, Audio, Caption, Video, GIF, and Lottie) into a single image or video file with an HTML-like auto-layout engine. The composition document is a single recursive `layout` code tree (flex/block/box/text/media) with per-node keyframe animation — deterministic: identical pixels for the same document and frame, in preview AND final render."
 metadata:
   nodeType: Compositor
-  triggers: "compositor, composite, layer, merge media, multi-layer, overlay, picture in picture, video layout"
+  triggers: "compositor, composite, layer, merge media, layout, flex, overlay, picture in picture, video layout, title card"
 ---
 
 # Compositor
 
 ## What It Does
-Composes multiple media inputs into a single ordered stack of layers. It outputs a combined Image or Video based on the input layer types, configurations, and spatial or timing properties.
+Composes media inputs into a single image or video using a **layout code tree** — the ONE
+source of truth for the composition. Agents author `config.layout`: a recursive tree of
+layout nodes (`flex` / `block` / `box` / `text` / `media`) with HTML-like auto-layout
+(`dir`, `gap`, `padding`, `justify`, `align`, `wrap`) and per-node keyframe animations.
+Rendering is deterministic: `(document, frame) → pixels`, identical in preview and final render.
 
 ## When to Use
-- **Overlays / Watermarks:** Overlay text, logos, captions, or SVGs onto video or image backgrounds.
-- **Picture-in-Picture:** Render multiple videos or images simultaneously in a split-screen or overlay layout.
-- **Timeline Composition:** Arrange audio tracks, voiceovers, Lottie animations, and video segments along a timeline.
-- **Visual Styling:** Use CSS-like layout properties, borders, padding, shadows, blending modes, and keyframe animations. Supports styling parameters for Text and Caption layers including font colors, sizes, background colors, custom border radius/padding, line-by-line rounded text boxes (via `borderRadius` or `strokeRadius` / `useRoundedTextBox`), high-quality text outline/stroke rendering, and multiple drop shadows.
+- **Title cards / hero layouts:** Flex stacks with title + subtitle text and box chips (see example below).
+- **Overlays / Watermarks:** Absolute-positioned text or media over video/image backgrounds.
+- **Picture-in-Picture:** Multiple videos/images arranged by a flex/block tree or absolute placement.
+- **Timeline composition:** Per-node `startFrame` / `durationFrames` + keyframe tracks.
+- **Visual styling:** Box fills + radius, text styling, shadows, keyframe motion.
 
 ## Inputs
 This node uses **Variable Inputs**. You can add dynamically named input handles of the following types:
@@ -37,60 +42,76 @@ This node uses **Variable Inputs**. You can add dynamically named input handles 
 | volume | number | 0–1 | 1 | Overall master audio volume scaling. |
 | fps | number | 1–120 | 24 | Frames per second for video output. |
 | mode | string | `"Video"` or `"Image"` | `"Video"` | Explicitly configures compositor rendering/output mode. |
-| layers | array | Array of Layer Objects | `[]` | Ordered list of layer settings, mapped via `inputHandleId`. |
+| layout | array | Array of Layout Nodes | `[]` | The composition document: a recursive tree of layout nodes. |
+
+> **`type` vs `kind`:** `type` is an INPUT DataType (`Text`, `Image`, `Video`, `Audio`,
+> `Caption`, `SVG`, `GIF`, `Lottie` …) and never appears on layout nodes. The layout type of
+> a node is its **`kind`**: `flex` | `block` | `box` | `text` | `media`.
 
 ---
 
-### Layer Object Schema
-Each layer in `layers` supports:
-- **`id`** (string, required): A unique identifier for the layer.
-- **`inputHandleId`** (string, required): Maps this layer configuration to a specific dynamic input handle.
-- **`type`** (string, enum): The media type of this layer (e.g. `Video`, `Image`, etc.).
-- **`x` / `y`** (number): X/Y offset from the canvas top-left.
-- **`width` / `height`** (number): Explicit layer dimensions (optional).
-- **`scale` / `rotation` / `opacity`**: Scaling multiplier (default 1), rotation in degrees (default 0), and opacity percentage (0-1, default 1).
-- **`blendMode`** (string): Standard HTML/Canvas blending or Porter-Duff composite operation.
-- **`startFrame` / `durationFrames`** (integer, required): Timing configurations. `startFrame` and `durationFrames` are both measured in integer frames relative to the master timeline.
-- **`trimStartFrames` / `trimEndFrames`** (integer): Trims the start/end duration of media layers (in frames).
-- **`volume`**: Volume level for audio/video layers (0 to 1).
-- **`hidden`** (boolean): Hides the layer visually during rendering.
-- **`muted`** (boolean): Mutes the audio track of the layer.
-- **`backgroundColor`** (string): CSS background color (e.g. Hex, RGB) for the layer.
-- **`borderColor`** (string): CSS color for the layer border.
-- **`borderWidth`** (number): Width of the layer border in pixels.
-- **`strokeRadius`** (number): Corner radius of the layer background, content mask, and border in pixels.
-- **`strokeAlign`** (string): Alignment of the border relative to the layer bounds (`inside`, `center`, `outside`).
-- **`bottomPadding`** (number): Required for `Caption` type layers. Specifies the offset in pixels from the bottom of the container.
-- **`zIndex`** (number): Specifies the stack order. Higher values render on top.
-- **`animation`** (object): Timed, track-based keyframe configurations (§ Layer Animation Schema).
+### Layout Node Schema
+Common fields (every node):
+- **`id`** (string, required): Unique node id — also keys the timeline.
+- **`kind`** (string, required): `"flex"` | `"block"` | `"box"` | `"text"` | `"media"`.
+- **`position`** (string, optional): `"relative"` (default, in-flow) or `"absolute"` (out-of-flow; placed by `x`/`y`).
+- **`x` / `y`** (number, optional): Offset from the parent's content box (absolute placement / transform base).
+- **`width` / `height`** (SizeSpec, optional): `number` (pixels), `"auto"` (content), `"fit"` (fit content), or `"fill"` (fill the parent). `block` defaults to `"fill"` width.
+- **`grow`** (number, optional): Flex-grow weight — extra main-axis space is split proportionally.
+- **`zIndex`** (number, optional, default 0): Stack order **within the same parent level**. Higher renders on top.
+- **`hidden`** (boolean, optional): Skips drawing the node.
+- **`opacity`** (number, optional, 0–1, default 1).
+- **`rotation`** (degrees) / **`scale`** (multiplier) / **`anchorX`**, **`anchorY`** (0–1): Node transform.
+- **`startFrame`** / **`durationFrames`** (integer, optional): Node visibility window on the master timeline (frames).
+- **`animation`** (object, optional): Track-based keyframes (§ Animation Schema).
+
+Container styles (flex/block/box with children):
+- **`dir`** (flex only): `"row"` (default) or `"column"`.
+- **`gap`** (number): Space between children along the main axis.
+- **`padding`** (number): Inset of the content box.
+- **`justify`** (flex only): `start` (default) | `center` | `end` | `space-between` | `space-around`.
+- **`align`** (flex/block): `start` (default) | `center` | `end` | `stretch`.
+- **`wrap`** (flex only, boolean): Allow main-axis wrapping.
+
+Per-kind fields:
+- **`box`**: `background` (CSS color, also accepts gradients), `borderRadius` (number), `padding`. A `box` with children behaves like a column container.
+- **`text`**: `text` (string), `fontSize`, `fontFamily`, `fontWeight`, `fontStyle`, `fill` (text color), `align`, `verticalAlign`, `lineHeight`, `letterSpacing`, `maxWidth`, `textShadow`, `background` (rounded text box fill), `borderRadius`, `padding`.
+- **`media`**: `inputHandleId` (string, required — must match a connected input handle), `fit` (`"cover"` | `"contain"` | `"fill"` | `"none"`, default `"contain"`), `volume` (0–1), `muted`, `borderRadius`.
+
+Layout semantics (HTML-like):
+- A **flex** node with `dir: "column"` stacks children vertically; `dir: "row"` lays them horizontally.
+- **block** behaves as a column container whose width fills the parent.
+- **box** without children is a styled rectangle (fill + radius); with children it wraps them in a column.
+- `"fill"`/`"fit"` sizes resolve against the containing block; `grow` splits leftover space.
+- **absolute** nodes are removed from flow and placed at `x`/`y` of their parent's content box.
+- **Text wraps**: an explicit numeric `width` wraps at that width; `maxWidth` wraps only when the natural single-line width exceeds it. The node box always matches the drawn (wrapped) text.
+- **Canvas bounds**: the output is exactly `width`×`height`. Nodes may extend beyond it (large sizes, negative `x`/`y`) — anything outside the canvas is clipped in the output. Use `fit`/`contain`/`fill` and canvas-sized boxes for fully-visible media.
 
 ---
 
-### Layer Animation Schema
+### Animation Schema (per node)
 - **`tracks`** (array): Up to 24 animation tracks.
 Each track represents animatable property modifications:
   - **`id`** (string, required): Unique identifier for the track.
-  - **`prop`** (string, enum, required): The property being animated: `x`, `y`, `scale`, `rotation`, `opacity`, `width`, `height`, `volume`, `hidden`, `muted`.
+  - **`prop`** (string, enum, required): `x`, `y`, `scale`, `rotation`, `opacity`, `width`, `height`, `volume`, `hidden`, `muted` (layout props `width`/`height` re-layout the tree per frame).
   - **`keyframes`** (array, required): Chronologically sorted keyframe points.
   - **`repeat`** (number, optional): GSAP loop count (e.g., -1 for infinite loops).
   - **`yoyo`** (boolean, optional): If true, animates back and forth.
-  - **`durationFrames`** (number, optional): Explicit duration window.
 
 #### Keyframe Schema:
   - **`id`** (string, required): Unique keyframe identifier.
-  - **`frame`** (number, required): Clip-relative frame number where this keyframe is reached (`0` = layer start).
+  - **`frame`** (number, required): Clip-relative frame number where this keyframe is reached (`0` = node start).
   - **`value`** (number or boolean, required): Target value at this keyframe.
   - **`ease`** (object, optional): Segment easing parameters.
     - **`name`**: `none`, `power1`, `power2`, `power3`, `sine`, `circ`, `expo`, `back`, `elastic`, `bounce`, `spring`.
     - **`dir`**: `in`, `out`, `inOut`.
     - **`params`** (array of numbers): Optional easing parameter overrides (e.g. `back.out(1.7)`).
-  - **`presetGroupId`** (string, optional): Links to a Canva-style preset animation group.
 
 ---
 
-### Layering / Z-Index Order
-- Layers are drawn in ascending order of their `zIndex` (defaulting to `0`).
-- If `zIndex` values are equal or omitted, the **last** item in the `layers` array is drawn on top of the earlier ones.
+### Ordering / Z-Index
+- Within each parent level, nodes draw in ascending `zIndex` (default `0`).
+- The tree order (children array order) is the layout order; `zIndex` only breaks ties within a level.
 
 ## Output
 | Handle | Type | Description |
@@ -98,47 +119,104 @@ Each track represents animatable property modifications:
 | Result | Image, Video | The final rendered composite media file. |
 
 ## Common Patterns
-- **Watermarking a Video:** Connect a video to input `A` and a PNG to input `B`. Position `B` in the bottom-right corner, apply lower opacity, and render the output.
-- **Subtitled Video:** Feed video into `Video` input and captions into `Caption` input. The compositor aligns and renders subtitles over the active frames. Always place the `Caption` layer at the end of the `layers` array (or with a higher `zIndex`) so subtitles render on top of the video content.
-- **Audio Over Dubbing:** Connect a mute/low-volume video layer and a high-quality audio file, aligning the audio track's start frame.
+- **Title card:** one `flex` column (`align: "center"`, `pad`, `fill`) containing title `text`, subtitle `text`, and a `flex` row of `box` chips with `media` avatars. Animate the column's `opacity`, the row's `y`, and a media node's `scale` with keyframe tracks.
+- **Watermarking a Video:** a `flex` row (`align: "end"`, `justify: "end"`, full canvas) containing a `media` node bound to the PNG input; low `opacity`.
+- **Picture-in-Picture:** a `flex` row with two `media` nodes (`fit: "cover"`, each `grow: 1`).
 
 ## Don't Forget
-Connecting layers doesn't make them render, you should set the full layers config directly with proper handle IDs for all connected inputs.
+- The `layout` tree IS the composition — there is no other layer model. Every **media** node
+  needs a valid `inputHandleId` matching a connected input, and every node needs a `kind`.
+- `type` is an input DataType — never put it on layout nodes; use `kind`.
+- Connected inputs do NOT render automatically — build the tree explicitly.
 
 ## Example JSON Configuration
 ```json
 {
   "width": 1920,
   "height": 1080,
-  "backgroundColor": "#000000",
+  "backgroundColor": "#16130d",
   "fps": 24,
   "mode": "Video",
-  "layers": [
+  "layout": [
     {
-      "id": "bg-layer",
-      "inputHandleId": "background",
-      "type": "Video",
-      "x": 0,
-      "y": 0,
-      "startFrame": 0,
-      "durationFrames": 72
-    },
-    {
-      "id": "overlay-text",
-      "inputHandleId": "text-title",
-      "type": "Text",
-      "x": 960,
-      "y": 540,
-      "startFrame": 12,
-      "durationFrames": 48,
+      "id": "hero",
+      "kind": "flex",
+      "dir": "column",
+      "gap": 24,
+      "padding": 80,
+      "align": "center",
+      "width": "fill",
+      "height": "fill",
       "animation": {
         "tracks": [
           {
-            "id": "fade-track",
+            "id": "hero-fade",
             "prop": "opacity",
             "keyframes": [
-              { "id": "kf0", "frame": 0, "value": 0, "ease": { "name": "power2", "dir": "out" } },
-              { "id": "kf1", "frame": 12, "value": 1 }
+              { "id": "kf0", "frame": 0, "value": 0 },
+              { "id": "kf1", "frame": 15, "value": 1, "ease": { "name": "power2", "dir": "out" } }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": "title",
+          "kind": "text",
+          "text": "Big Title",
+          "fontSize": 96,
+          "fontWeight": 900,
+          "fill": "#f4ead8"
+        },
+        {
+          "id": "subtitle",
+          "kind": "text",
+          "text": "Rendered by the compositor layout engine",
+          "fontSize": 40,
+          "fill": "#b8a88a"
+        },
+        {
+          "id": "badges",
+          "kind": "flex",
+          "dir": "row",
+          "gap": 16,
+          "animation": {
+            "tracks": [
+              {
+                "id": "badges-rise",
+                "prop": "y",
+                "keyframes": [
+                  { "id": "kf0", "frame": 0, "value": 40 },
+                  { "id": "kf1", "frame": 20, "value": 0, "ease": { "name": "back", "dir": "out" } }
+                ]
+              }
+            ]
+          },
+          "children": [
+            { "id": "chip-avatar", "kind": "box", "width": "fit", "borderRadius": 24, "background": "#3a2f1e" },
+            { "id": "chip-hero", "kind": "box", "width": "fit", "borderRadius": 24, "background": "#3a2f1e" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avatar-img",
+      "kind": "media",
+      "inputHandleId": "avatar",
+      "fit": "cover",
+      "width": 200,
+      "height": 200,
+      "borderRadius": 100,
+      "startFrame": 0,
+      "durationFrames": 72,
+      "animation": {
+        "tracks": [
+          {
+            "id": "avatar-pop",
+            "prop": "scale",
+            "keyframes": [
+              { "id": "kf0", "frame": 0, "value": 1.15 },
+              { "id": "kf1", "frame": 30, "value": 1 }
             ]
           }
         ]
