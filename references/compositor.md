@@ -129,6 +129,7 @@ Each track represents animatable property modifications:
   needs a valid `inputHandleId` matching a connected input, and every node needs a `kind`.
 - `type` is an input DataType — never put it on layout nodes; use `kind`.
 - Connected inputs do NOT render automatically — build the tree explicitly.
+- **Static Image Compositions:** When outputting static ad banners, posters, or graphics, set `"mode": "Image"` and ensure all connected filter nodes (such as `FilmGrain`) are configured statically (`animated: false`). Do NOT insert `ExtractFrame` nodes for static image compositions — connect `Compositor` directly to `Export`.
 
 ### Dynamic Handle Mapping (for Offline CLI Rendering)
 When running the workflow headless via the Artifex CLI, dynamic inputs receive generated internal IDs (e.g., `temp-xxxx`). 

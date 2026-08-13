@@ -44,3 +44,4 @@ Extracts a single frame from an input video, Lottie animation, or GIF file and o
 ## Limitations
 - Frame numbers are clamped to the valid range of the input media (0 to totalFrames - 1).
 - Output is always a single static Image (no duration, no FPS).
+- **Do NOT Use for Static Images:** `ExtractFrame` is strictly meant for capturing frames from true animation sources (`Video`, `Lottie`, `GIF`). Do NOT connect static image pipelines or static `Compositor` outputs to `ExtractFrame`.
