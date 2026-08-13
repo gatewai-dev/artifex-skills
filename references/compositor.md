@@ -54,6 +54,7 @@ This node uses **Variable Inputs**. You can add dynamically named input handles 
 Common fields (every node):
 - **`id`** (string, required): Unique node id — also keys the timeline.
 - **`kind`** (string, required): `"flex"` | `"block"` | `"box"` | `"text"` | `"media"`.
+- **`inputHandleId`** (string, optional): Graph binding — which connected input this node renders (for text/media nodes).
 - **`position`** (string, optional): `"relative"` (default, in-flow) or `"absolute"` (out-of-flow; placed by `x`/`y`).
 - **`x` / `y`** (number, optional): Offset from the parent's content box (absolute placement / transform base).
 - **`width` / `height`** (SizeSpec, optional): `number` (pixels), `"auto"` (content), `"fit"` (fit content), or `"fill"` (fill the parent). `block` defaults to `"fill"` width.
@@ -75,7 +76,7 @@ Container styles (flex/block/box with children):
 
 Per-kind fields:
 - **`box`**: `background` (CSS color, also accepts gradients), `borderRadius` (number), `padding`. A `box` with children behaves like a column container.
-- **`text`**: `text` (string), `fontSize`, `fontFamily`, `fontWeight`, `fontStyle`, `fill` (text color), `align`, `verticalAlign`, `lineHeight`, `letterSpacing`, `maxWidth`, `textShadow`, `background` (rounded text box fill), `borderRadius`, `padding`.
+- **`text`**: `text` (string), `fontSize`, `fontFamily`, `fontWeight`, `fontStyle`, `fill` (text color), `align`, `verticalAlign`, `lineHeight`, `letterSpacing`, `textShadow`, `shadows`, `background` (rounded text box fill), `borderRadius`, `padding`.
 - **`media`**: `inputHandleId` (string, required — must match a connected input handle), `fit` (`"cover"` | `"contain"` | `"fill"` | `"none"`, default `"contain"`), `volume` (0–1), `muted`, `borderRadius`.
 
 Layout semantics (HTML-like):
@@ -84,7 +85,7 @@ Layout semantics (HTML-like):
 - **box** without children is a styled rectangle (fill + radius); with children it wraps them in a column.
 - `"fill"`/`"fit"` sizes resolve against the containing block; `grow` splits leftover space.
 - **absolute** nodes are removed from flow and placed at `x`/`y` of their parent's content box.
-- **Text wraps**: an explicit numeric `width` wraps at that width; `maxWidth` wraps only when the natural single-line width exceeds it. The node box always matches the drawn (wrapped) text.
+- **Text wraps**: an explicit numeric `width` wraps at that width. The node box always matches the drawn (wrapped) text.
 - **Canvas bounds**: the output is exactly `width`×`height`. Nodes may extend beyond it (large sizes, negative `x`/`y`) — anything outside the canvas is clipped in the output. Use `fit`/`contain`/`fill` and canvas-sized boxes for fully-visible media.
 
 ---
@@ -93,7 +94,7 @@ Layout semantics (HTML-like):
 - **`tracks`** (array): Up to 24 animation tracks.
 Each track represents animatable property modifications:
   - **`id`** (string, required): Unique identifier for the track.
-  - **`prop`** (string, enum, required): `x`, `y`, `scale`, `rotation`, `opacity`, `width`, `height`, `volume`, `hidden`, `muted` (layout props `width`/`height` re-layout the tree per frame).
+  - **`prop`** (string, enum, required): `x`, `y`, `scale`, `rotation`, `opacity`, `width`, `height`, `volume`, `hidden`, `muted`, `fontSize` (layout-affecting props like `width`/`height`/`fontSize` re-layout the tree per frame).
   - **`keyframes`** (array, required): Chronologically sorted keyframe points.
   - **`repeat`** (number, optional): GSAP loop count (e.g., -1 for infinite loops).
   - **`yoyo`** (boolean, optional): If true, animates back and forth.
@@ -128,6 +129,15 @@ Each track represents animatable property modifications:
   needs a valid `inputHandleId` matching a connected input, and every node needs a `kind`.
 - `type` is an input DataType — never put it on layout nodes; use `kind`.
 - Connected inputs do NOT render automatically — build the tree explicitly.
+
+### Dynamic Handle Mapping (for Offline CLI Rendering)
+When running the workflow headless via the Artifex CLI, dynamic inputs receive generated internal IDs (e.g., `temp-xxxx`). 
+To correctly reference a dynamic input in your layout:
+1. In your `spec.json`, set the `inputHandleId` of your `media` or `text` layout node to the human-readable label of the dynamic input (e.g., `"bg_canvas_handle"`).
+2. The Artifex runner automatically resolves and maps these human-readable labels to the generated internal handle IDs during graph compilation.
+3. This mapping is recursively applied to all string properties matching a dynamic input label in:
+   - Root configuration properties
+   - Compositor `layout` tree elements (`inputHandleId`)
 
 ## Example JSON Configuration
 ```json
@@ -193,8 +203,8 @@ Each track represents animatable property modifications:
             ]
           },
           "children": [
-            { "id": "chip-avatar", "kind": "box", "width": "fit", "borderRadius": 24, "background": "#3a2f1e" },
-            { "id": "chip-hero", "kind": "box", "width": "fit", "borderRadius": 24, "background": "#3a2f1e" }
+            { "id": "chip-avatar", "kind": "box", "width": 160, "height": 48, "borderRadius": 24, "background": "#3a2f1e" },
+            { "id": "chip-hero", "kind": "box", "width": 160, "height": 48, "borderRadius": 24, "background": "#3a2f1e" }
           ]
         }
       ]
