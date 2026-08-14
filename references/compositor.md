@@ -77,7 +77,24 @@ Container styles (flex/block/box with children):
 Per-kind fields:
 - **`box`**: `background` (CSS color, also accepts gradients), `borderRadius` (number), `padding`. A `box` with children behaves like a column container.
 - **`text`**: `text` (string), `fontSize`, `fontFamily`, `fontWeight`, `fontStyle`, `fill` (text color), `align`, `verticalAlign`, `lineHeight`, `letterSpacing`, `textShadow`, `shadows`, `background` (rounded text box fill), `borderRadius`, `padding`.
-- **`media`**: `inputHandleId` (string, required — must match a connected input handle), `fit` (`"cover"` | `"contain"` | `"fill"` | `"none"`, default `"contain"`), `volume` (0–1), `muted`, `borderRadius`.
+- **`media`**: `inputHandleId` (string, required — must match a connected input handle).
+  - **Standard Media (`Video`, `Image`, `GIF`, `SVG`, `Lottie`)**: `fit` (`"cover"` | `"contain"` | `"fill"` | `"none"`, default `"contain"`), `volume` (0–1), `muted`, `borderRadius`, `borderColor`, `borderWidth`.
+  - **Captions & Subtitles (`Caption` DataType)**: When bound to a `Caption` input (SRT source), `kind: "media"` renders time-synchronized subtitle cues:
+    - `fontSize` (number, default `48`): Font size in pixels.
+    - `fontFamily` (string, default `"Inter"`): Font family.
+    - `fontWeight` (string | number, default `700`): Weight (`"normal"`, `"bold"`, `400`, `700`, `900`).
+    - `fontStyle` (`"normal"` | `"italic"`).
+    - `fill` (string, default `"#ffffff"`): Text color.
+    - `align` (`"start"` | `"center"` | `"end"`, default `"center"`): Horizontal text alignment.
+    - `verticalAlign` (`"top"` | `"middle"` | `"bottom"`, default `"bottom"`): Vertical alignment. When `"bottom"`, the bottom edge is anchored, and multi-line subtitle cues expand **upwards**.
+    - `lineHeight` (number, default `1.2` or `fontSize * 1.2`).
+    - `letterSpacing` (number, default `0`).
+    - `background` (string, optional): Background box fill color behind the active subtitle text.
+    - `padding` (number, optional): Inset padding around text.
+    - `borderRadius` / `strokeRadius` (number, default `8`): Corner radius for background rectangle.
+    - `stroke` (string) / `strokeWidth` (number): Text outline stroke.
+    - `textShadow` / `shadows`: Drop shadows.
+    - **Sizing & Placement**: An explicit `width` (e.g. `800` or `"80%"`) controls word-wrapping width. When `height` is omitted or `"auto"`, the engine measures the maximum height needed across all cues in the SRT file to keep layout and positioning stable throughout playback.
 
 Layout semantics (HTML-like):
 - A **flex** node with `dir: "column"` stacks children vertically; `dir: "row"` lays them horizontally.
@@ -86,6 +103,7 @@ Layout semantics (HTML-like):
 - `"fill"`/`"fit"` sizes resolve against the containing block; `grow` splits leftover space.
 - **absolute** nodes are removed from flow and placed at `x`/`y` of their parent's content box.
 - **Text wraps**: an explicit numeric `width` wraps at that width. The node box always matches the drawn (wrapped) text.
+- **Captions**: Render synchronized cues from connected SRT sources. Default to bottom alignment (`verticalAlign: "bottom"`), expanding earlier lines upwards when wrapping across multiple lines.
 - **Canvas bounds**: the output is exactly `width`×`height`. Nodes may extend beyond it (large sizes, negative `x`/`y`) — anything outside the canvas is clipped in the output. Use `fit`/`contain`/`fill` and canvas-sized boxes for fully-visible media.
 
 ---
@@ -94,7 +112,7 @@ Layout semantics (HTML-like):
 - **`tracks`** (array): Up to 24 animation tracks.
 Each track represents animatable property modifications:
   - **`id`** (string, required): Unique identifier for the track.
-  - **`prop`** (string, enum, required): `x`, `y`, `scale`, `rotation`, `opacity`, `width`, `height`, `volume`, `hidden`, `muted`, `fontSize` (layout-affecting props like `width`/`height`/`fontSize` re-layout the tree per frame).
+  - **`prop`** (string, enum, required): `x`, `y`, `scale`, `rotation`, `opacity`, `width`, `height`, `volume`, `hidden`, `muted`, `fontSize`, `text` (layout-affecting props like `width`/`height`/`fontSize` re-layout the tree per frame; `text` controls progressive text reveal for typewriter, word-reveal, line-reveal, karaoke).
   - **`keyframes`** (array, required): Chronologically sorted keyframe points.
   - **`repeat`** (number, optional): GSAP loop count (e.g., -1 for infinite loops).
   - **`yoyo`** (boolean, optional): If true, animates back and forth.
@@ -121,6 +139,7 @@ Each track represents animatable property modifications:
 
 ## Common Patterns
 - **Title card:** one `flex` column (`align: "center"`, `pad`, `fill`) containing title `text`, subtitle `text`, and a `flex` row of `box` chips with `media` avatars. Animate the column's `opacity`, the row's `y`, and a media node's `scale` with keyframe tracks.
+- **Video Subtitles / Captions:** Add a dynamic `Caption` input handle (e.g. `"subtitles"`). In the layout tree, place a `media` node bound to `"subtitles"` with `width: 900`, `fill: "#ffffff"`, `fontSize: 44`, `align: "center"`, `verticalAlign: "bottom"`, and place it near the bottom of the canvas (e.g. `x: 90`, `y: 880` or in a bottom-aligned flex container).
 - **Watermarking a Video:** a `flex` row (`align: "end"`, `justify: "end"`, full canvas) containing a `media` node bound to the PNG input; low `opacity`.
 - **Picture-in-Picture:** a `flex` row with two `media` nodes (`fit: "cover"`, each `grow: 1`).
 
@@ -232,6 +251,25 @@ To correctly reference a dynamic input in your layout:
           }
         ]
       }
+    },
+    {
+      "id": "subtitles",
+      "kind": "media",
+      "inputHandleId": "subtitles_handle",
+      "position": "absolute",
+      "x": 160,
+      "y": 860,
+      "width": 1600,
+      "fontSize": 48,
+      "fontWeight": 700,
+      "fill": "#ffffff",
+      "align": "center",
+      "verticalAlign": "bottom",
+      "stroke": "#000000",
+      "strokeWidth": 4,
+      "background": "#00000088",
+      "padding": 16,
+      "borderRadius": 12
     }
   ]
 }
