@@ -59,9 +59,14 @@ Common fields (every node):
 - **`x` / `y`** (number, optional): Offset from the parent's content box (absolute placement / transform base).
 - **`width` / `height`** (SizeSpec, optional): `number` (pixels), `"auto"` (content), `"fit"` (fit content), or `"fill"` (fill the parent). `block` defaults to `"fill"` width.
 - **`grow`** (number, optional): Flex-grow weight — extra main-axis space is split proportionally.
+- **`flexShrink`** (number, optional): Flex shrink factor (Yoga).
+- **`flexBasis`** (number, optional): Flex basis in pixels.
+- **`alignSelf`** (string, optional): Per-child cross-axis override (`"auto"` | `"start"` | `"center"` | `"end"` | `"stretch"` | `"baseline"`).
+- **`aspectRatio`** (number, optional): Intrinsic aspect ratio (`width / height`).
 - **`zIndex`** (number, optional, default 0): Stack order **within the same parent level**. Higher renders on top.
 - **`hidden`** (boolean, optional): Skips drawing the node.
 - **`opacity`** (number, optional, 0–1, default 1).
+- **`blendMode`** (string, optional, default `"normal"`): Blend mode used when compositing the node (`"normal"`, `"multiply"`, `"screen"`, `"overlay"`, `"darken"`, `"lighten"`, `"color-dodge"`, `"color-burn"`, `"hard-light"`, `"soft-light"`, `"difference"`, `"exclusion"`, `"hue"`, `"saturation"`, `"color"`, `"luminosity"`, `"source-over"`, `"source-in"`, `"source-out"`, `"source-atop"`, `"destination-over"`, `"destination-in"`, `"destination-out"`, `"destination-atop"`, `"lighter"`, `"copy"`, `"mask-in"`, `"mask-out"`, `"xor"`).
 - **`rotation`** (degrees) / **`scale`** (multiplier) / **`anchorX`**, **`anchorY`** (0–1): Node transform.
 - **`startFrame`** / **`durationFrames`** (integer, optional): Node visibility window on the master timeline (frames).
 - **`animation`** (object, optional): Track-based keyframes (§ Animation Schema).
@@ -144,6 +149,7 @@ Each track represents animatable property modifications:
 - **Picture-in-Picture:** a `flex` row with two `media` nodes (`fit: "cover"`, each `grow: 1`).
 
 ## Don't Forget
+- If text rendering required, you must include a font in spec (CLI TOOL only).
 - The `layout` tree IS the composition — there is no other layer model. Every **media** node
   needs a valid `inputHandleId` matching a connected input, and every node needs a `kind`.
 - `type` is an input DataType — never put it on layout nodes; use `kind`.
