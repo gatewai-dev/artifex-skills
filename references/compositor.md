@@ -149,7 +149,7 @@ Each track represents animatable property modifications:
 - **Picture-in-Picture:** a `flex` row with two `media` nodes (`fit: "cover"`, each `grow: 1`).
 
 ## Don't Forget
-- If text rendering required, you must include a font in spec (CLI TOOL only).
+- If text rendering required, you must include a font in spec (CLI TOOL only). By default emoji font is not loaded. NotoColorEmoji seems to be working well. Try to use NotoColorEmoji as default font for emojis.
 - The `layout` tree IS the composition — there is no other layer model. Every **media** node
   needs a valid `inputHandleId` matching a connected input, and every node needs a `kind`.
 - `type` is an input DataType — never put it on layout nodes; use `kind`.
