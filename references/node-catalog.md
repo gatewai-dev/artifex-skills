@@ -7,7 +7,7 @@ metadata:
 
 # Node Catalog
 
-Authoritative capabilities of every registered node. Input/output handles and dynamic (variable) inputs/outputs are read directly from each node manifest at build time — the same data `artifex nodes --json` reports. Featured nodes (57).
+Authoritative capabilities of every registered node. Input/output handles and dynamic (variable) inputs/outputs are read directly from each node manifest at build time — the same data `artifex nodes --json` reports. Featured nodes (74).
 
 ### Media
 
@@ -187,6 +187,69 @@ For detailed usage rules, config parameters, and examples for this node, see [Ca
 
 ---
 
+#### Channel Merger (`ChannelMerger`)
+
+Combines up to 4 grayscale image streams into a composite color image across RGBA, HSLA, CMYK, or LAB color models.
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Channel 1` | Image, SVG, Video, Lottie, GIF | yes |
+| `Channel 2` | Image, SVG, Video, Lottie, GIF | yes |
+| `Channel 3` | Image, SVG, Video, Lottie, GIF | yes |
+| `Channel 4` | Image, SVG, Video, Lottie, GIF | no |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** no
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [ChannelMerger Reference](file:///packages/artifex-skills/references/channel-merger.md).
+
+---
+
+#### Channel Splitter (`ChannelSplitter`)
+
+Splits an image or video stream into 4 distinct single-channel grayscale images across RGBA, HSLA, CMYK, or LAB color models.
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Channel 1` | Image, Video, GIF | no |
+| `Channel 2` | Image, Video, GIF | no |
+| `Channel 3` | Image, Video, GIF | no |
+| `Channel 4` | Image, Video, GIF | no |
+- **Dynamic inputs:** no
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [ChannelSplitter Reference](file:///packages/artifex-skills/references/channel-splitter.md).
+
+---
+
+#### Color Balance (`ColorBalance`)
+
+Shifts color balance of Shadows, Midtones, and Highlights along Cyan-Red, Magenta-Green, and Yellow-Blue axes
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, GIF, Lottie | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** enabled (Signal, Number)
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [ColorBalance Reference](file:///packages/artifex-skills/references/color-balance.md).
+
+---
+
 #### Color Key (`ColorKey`)
 
 Key out a color (chroma key) with spill suppression
@@ -359,6 +422,82 @@ For detailed usage rules, config parameters, and examples for this node, see [Fi
 
 ---
 
+#### Flip (`Flip`)
+
+Mirror, flip, transpose, or reflect visual media horizontally, vertically, diagonally, or in kaleidoscopic split symmetry
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** no
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [Flip Reference](file:///packages/artifex-skills/references/flip.md).
+
+---
+
+#### Gradient Map (`GradientMap`)
+
+Replaces luminance values with colors sampled along a custom multi-stop color gradient
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, GIF, Lottie | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** no
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [GradientMap Reference](file:///packages/artifex-skills/references/gradient-map.md).
+
+---
+
+#### Halftone Screen (`HalftoneScreen`)
+
+Convert visual media into procedural halftone dot or CMYK raster screens with customizable angles and geometry
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** enabled (Signal, Number)
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [HalftoneScreen Reference](file:///packages/artifex-skills/references/halftone-screen.md).
+
+---
+
+#### High Pass (`HighPass`)
+
+Extract high-frequency edge details and textures for frequency separation and sharpening
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** enabled (Signal, Number)
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [HighPass Reference](file:///packages/artifex-skills/references/high-pass.md).
+
+---
+
 #### Ken Burns (`KenBurns`)
 
 Create a video using Ken Burns effect
@@ -378,6 +517,25 @@ For detailed usage rules, config parameters, and examples for this node, see [Ke
 
 ---
 
+#### Layer Style (`LayerStyle`)
+
+Applies procedural layer styles to an alpha-isolated layer or graphic. Calculates distance field vectors, inner/outer alpha convolutions, and light elevation models to generate standard Photoshop FX.
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** enabled (Signal, Number)
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [LayerStyle Reference](file:///packages/artifex-skills/references/layer-style.md).
+
+---
+
 #### Levels (`Levels`)
 
 Adjust tonal range and color balance with input/output levels
@@ -394,6 +552,45 @@ Adjust tonal range and color balance with input/output levels
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [Levels Reference](file:///packages/artifex-skills/references/levels.md).
+
+---
+
+#### Liquify (`Liquify`)
+
+Apply localized push, pull, bloat, pucker, and twirl distortions with smooth radial falloff
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** no
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [Liquify Reference](file:///packages/artifex-skills/references/liquify.md).
+
+---
+
+#### Mask Math (`MaskMath`)
+
+Morphological (dilate, erode, choke, feather) and Boolean set operations (union, intersect, subtract, difference, invert) on alpha/matte masks
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Mask A` | Image, SVG, Video, Lottie, GIF | yes |
+| `Mask B` | Image, SVG, Video, Lottie, GIF | no |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** no
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [MaskMath Reference](file:///packages/artifex-skills/references/mask-math.md).
 
 ---
 
@@ -491,6 +688,46 @@ For detailed usage rules, config parameters, and examples for this node, see [Pa
 
 ---
 
+#### Patch Heal (`PatchHeal`)
+
+Coordinate-offset clone stamping, texture transfer, and seamless gradient healing
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+| `Mask` | Image, SVG, Video, Lottie, GIF | no |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** no
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [PatchHeal Reference](file:///packages/artifex-skills/references/patch-heal.md).
+
+---
+
+#### Refine Edge (`RefineEdge`)
+
+Matte defringing and edge decontamination. Strips background color bleeding halos, refines edge transparency, and smoothes sub-pixel details.
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+| `Matte` | Image, SVG, Video, Lottie, GIF | no |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** no
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [RefineEdge Reference](file:///packages/artifex-skills/references/refine-edge.md).
+
+---
+
 #### Resizer / Scaler (`ResizerScaler`)
 
 Adjust aspect ratios, scale resolution, crop, and pad image/video assets.
@@ -507,6 +744,61 @@ Adjust aspect ratios, scale resolution, crop, and pad image/video assets.
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [ResizerScaler Reference](file:///packages/artifex-skills/references/resizer-scaler.md).
+
+---
+
+#### Selective Color (`SelectiveColor`)
+
+Photoshop standard CMYK color grading across 9 targeted color ranges without edge artifacts.
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** no
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [SelectiveColor Reference](file:///packages/artifex-skills/references/selective-color.md).
+
+---
+
+#### Shadows & Highlights (`ShadowsHighlights`)
+
+Dynamic range recovery with independent shadow lifting, highlight suppression, and tonal width control
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** enabled (Signal, Number)
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [ShadowsHighlights Reference](file:///packages/artifex-skills/references/shadows-highlights.md).
+
+---
+
+#### Vector Shape (`ShapeGenerator`)
+
+Renders crisp, resolution-independent parametric shapes (rectangles with per-corner radii, ellipses, regular polygons, stars, arrows, custom SVG bezier paths) with solid/gradient fills, strokes, and dash patterns
+
+- **Inputs:**
+_none_
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | SVG, Image | no |
+- **Dynamic inputs:** no
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [ShapeGenerator Reference](file:///packages/artifex-skills/references/shape-generator.md).
 
 ---
 
@@ -527,6 +819,44 @@ Balance audio output between left and right channels
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [StereoPanning Reference](file:///packages/artifex-skills/references/stereo-panning.md).
+
+---
+
+#### Tile Offset (`TileOffset`)
+
+Shifts visual media coordinates horizontally and vertically with seamless modulo wrap-around, mirror, or edge clamping for pattern design
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** no
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [TileOffset Reference](file:///packages/artifex-skills/references/tile-offset.md).
+
+---
+
+#### Unsharp Mask (`UnsharpMask`)
+
+Enhance edge contrast and texture sharpness with precision Gaussian unsharp masking
+
+- **Inputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Input` | Image, SVG, Video, Lottie, GIF | yes |
+- **Outputs:**
+| Handle | Types | Required |
+|--------|-------|----------|
+| `Result` | Image, Video, GIF | no |
+- **Dynamic inputs:** enabled (Signal, Number)
+- **Dynamic outputs:** no
+
+For detailed usage rules, config parameters, and examples for this node, see [UnsharpMask Reference](file:///packages/artifex-skills/references/unsharp-mask.md).
 
 ---
 
