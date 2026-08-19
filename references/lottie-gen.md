@@ -24,7 +24,7 @@ Generates interactive, lightweight vector animations in the Lottie JSON format b
 ## Config
 | Field | Type | Range | Default | Description |
 |-------|------|-------|---------|-------------|
-| model | string (enum) | `gpt-5.6-terra`, `gpt-5.6-sol`, `google/gemini-3.5-flash`, | `"gpt-5.6-terra"` | The LLM used to write/structure the output Lottie JSON schema. |
+| model | string (enum) | `gpt-5.6-terra`, `gpt-5.6-sol`, `google/gemini-3.7-flash`, | `"gpt-5.6-terra"` | The LLM used to write/structure the output Lottie JSON schema. |
 | width | number | 1–4096 | 512 | Canvas width in pixels. |
 | height | number | 1–4096 | 512 | Canvas height in pixels. |
 | fps | number | 12–60 | 24 | Frames per second of the animation. |

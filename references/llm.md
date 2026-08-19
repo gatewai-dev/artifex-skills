@@ -26,7 +26,7 @@ Sends a text prompt, an optional developer/system instructions prompt, and optio
 ## Config
 | Field | Type | Range | Default | Description |
 |-------|------|-------|---------|-------------|
-| model | string (enum) | `openai/gpt-5.6-terra`, `openai/gpt-5.6-luna`, `openai/gpt-5.6-sol`, `google/gemini-3.5-flash`, `x-ai/grok-4.5`, | `"openai/gpt-5.6-luna"` | The LLM model to query. |
+| model | string (enum) | `openai/gpt-5.6-terra`, `openai/gpt-5.6-luna`, `openai/gpt-5.6-sol`, `google/gemini-3.7-flash`, `x-ai/grok-4.5`, | `"openai/gpt-5.6-luna"` | The LLM model to query. |
 | reasoningEffort | string (enum) | `none`, `low`, `medium`, `high`, `xhigh` | `"medium"` (OpenAI only) | Controls the scale of the model's internal thinking/reasoning before generating the final text. |
 | textVerbosity | string (enum) | `low`, `medium`, `high` | `"medium"` (OpenAI only) | Tells the model whether to generate a concise or detailed response. |
 | temperature | number | 0.0 to 2.0 | undefined | Creativity setting. *Supported only when reasoningEffort is not set or set to `none`.* |
@@ -48,5 +48,5 @@ Sends a text prompt, an optional developer/system instructions prompt, and optio
   - `openai/gpt-5.6-luna`: **3 credits**
   - `openai/gpt-5.6-terra`: **4.5 credits**
   - `openai/gpt-5.6-sol`: **9 credits**
-  - `google/gemini-3.5-flash`, `x-ai/grok-4.5`: **3 credits**
+  - `google/gemini-3.7-flash`, `x-ai/grok-4.5`: **3 credits**
 - **Temperature & Reasoning conflict:** For OpenAI models, temperature is ignored if reasoning (chain-of-thought) is active (set to low, medium, high, or xhigh). To use a custom temperature, set `reasoningEffort` to `none`.

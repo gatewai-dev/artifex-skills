@@ -67,7 +67,7 @@ or drop the array when rendering in the Gatewai editor.
       "type": "LLM",
       "name": "Script Refiner",
       "config": {
-        "model": "google/gemini-3.5-flash"
+        "model": "google/gemini-3.7-flash"
       }
     },
     {
@@ -112,7 +112,7 @@ or drop the array when rendering in the Gatewai editor.
       "type": "LLM",
       "name": "Visual Prompt Refiner",
       "config": {
-        "model": "google/gemini-3.5-flash"
+        "model": "google/gemini-3.7-flash"
       }
     },
     {

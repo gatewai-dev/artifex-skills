@@ -24,7 +24,7 @@ Apply a color lookup table (.cube) to media
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [ApplyLUT Reference](file:///packages/artifex-skills/references/apply-lut.md).
@@ -202,7 +202,7 @@ Combines up to 4 grayscale image streams into a composite color image across RGB
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [ChannelMerger Reference](file:///packages/artifex-skills/references/channel-merger.md).
@@ -262,7 +262,7 @@ Key out a color (chroma key) with spill suppression
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [ColorKey Reference](file:///packages/artifex-skills/references/color-key.md).
@@ -357,7 +357,7 @@ Distort media using a displacement map texture
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [DisplacementMap Reference](file:///packages/artifex-skills/references/displacement-map.md).
@@ -396,7 +396,7 @@ Extract a 3D LUT from two frames
 | Handle | Types | Required |
 |--------|-------|----------|
 | `LUT` | LUT | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [ExtractLUT Reference](file:///packages/artifex-skills/references/extract-lut.md).
@@ -415,7 +415,7 @@ Apply organic, cinematic film grain texture to media
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [FilmGrain Reference](file:///packages/artifex-skills/references/film-grain.md).
@@ -453,7 +453,7 @@ Replaces luminance values with colors sampled along a custom multi-stop color gr
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [GradientMap Reference](file:///packages/artifex-skills/references/gradient-map.md).
@@ -587,7 +587,7 @@ Morphological (dilate, erode, choke, feather) and Boolean set operations (union,
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [MaskMath Reference](file:///packages/artifex-skills/references/mask-math.md).
@@ -644,7 +644,7 @@ Apply Modulate adjustments to an image
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [Modulate Reference](file:///packages/artifex-skills/references/modulate.md).
@@ -661,7 +661,7 @@ _none_
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [NoiseGenerator Reference](file:///packages/artifex-skills/references/noise-generator.md).
@@ -701,7 +701,7 @@ Coordinate-offset clone stamping, texture transfer, and seamless gradient healin
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [PatchHeal Reference](file:///packages/artifex-skills/references/patch-heal.md).
@@ -721,7 +721,7 @@ Matte defringing and edge decontamination. Strips background color bleeding halo
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [RefineEdge Reference](file:///packages/artifex-skills/references/refine-edge.md).
@@ -795,7 +795,7 @@ _none_
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | SVG, Image | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [ShapeGenerator Reference](file:///packages/artifex-skills/references/shape-generator.md).
@@ -834,7 +834,7 @@ Shifts visual media coordinates horizontally and vertically with seamless modulo
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [TileOffset Reference](file:///packages/artifex-skills/references/tile-offset.md).
@@ -892,7 +892,7 @@ Apply a classic vignette effect with dark corners to visual media
 | Handle | Types | Required |
 |--------|-------|----------|
 | `Result` | Image, Video, GIF | no |
-- **Dynamic inputs:** no
+- **Dynamic inputs:** enabled (Signal, Number)
 - **Dynamic outputs:** no
 
 For detailed usage rules, config parameters, and examples for this node, see [Vignette Reference](file:///packages/artifex-skills/references/vignette.md).

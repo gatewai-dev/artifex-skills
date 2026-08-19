@@ -5,7 +5,7 @@ metadata:
   triggers: "install artifex, run workflow offline, gatewai-artifex, @gatewai.studio/artifex, artifex cli, render spec, run headless"
   library: "@gatewai.studio/artifex"
   repository: "https://github.com/gatewai-dev/artifex-skills"
-  version: "1.0.160"
+  version: "1.1.10"
   schema: "https://schemas.agentskills.io/v1/skill.json"
 ---
 
@@ -62,11 +62,12 @@ The CLI offers commands to discover capabilities, validate templates, execute no
 
 | Command | Arguments | Description | Options |
 |---|---|---|---|
-| `nodes` | *none* | Prints the registered nodes manifest details (types, config schema fields, input/output handles). | `--json` |
-| `skill` | `<nodeType>` | Prints the markdown documentation/instructions (`SKILL.md`) for the specific node type. | `--json`, `--list` |
-| `validate` | `<spec.json>` | Validates spec layout schema, node config Zod schemas, edge handle wiring. Aggregates and returns **ALL** errors at once. | `--json` |
-| `build` | `<spec.json>` | Assembles the graph in-memory and prints the full topological graph tree (nodes, handles, data types, execution order). | `--json` |
-| `run` | `<spec.json>` | Runs all necessary nodes in topological order, resolves output assets, and writes file exports to disk. Defaults to running all terminal nodes. | `--node <ids>` (comma-separated terminal nodes), `--json`, `--state <file>`, `--from-state <file>` |
+| `nodes` | *none* | Prints the registered nodes manifest details (types, config schema fields, input/output handles). | `--json`, `--plugin <path>` |
+| `skill` | `<nodeType>` | Prints the markdown documentation/instructions (`SKILL.md`) for the specific node type. | `--json`, `--list`, `--plugin <path>` |
+| `validate` | `<spec.json>` | Validates spec layout schema, node config Zod schemas, edge handle wiring. Aggregates and returns **ALL** errors at once. | `--json`, `--plugin <path>` |
+| `build` | `<spec.json>` | Assembles the graph in-memory and prints the full topological graph tree (nodes, handles, data types, execution order). | `--json`, `--plugin <path>` |
+| `run` | `<spec.json>` | Runs all necessary nodes in topological order, resolves output assets, and writes file exports to disk. Defaults to running all terminal nodes. | `--node <ids>`, `--json`, `--state <file>`, `--from-state <file>`, `--plugin <path>` |
+| `init-node` | `<name>` | Scaffolds a complete custom node package ready for development. | `--dir <path>`, `--type <name>`, `--description <text>`, `--category <name>` |
 
 ### `validate` vs `build` Usage Insight
 - **`artifex validate <spec.json>` (Assertion & Gatekeeper)**: Non-mutating validation check for pre-execution, CI/CD, and agent dry-runs. Aggregates and reports **ALL** validation errors at once (schema errors, node Zod config errors, edge handle mismatches). Exits with code `2` (`E_INPUT`) on error.
@@ -185,7 +186,7 @@ Instead of manually configuring verbose `Import` node structures and mock databa
       }
     }
 ```
-- **Automation**: The CLI automatically reads the local file, extracts full metadata (width, height, FPS, duration, audio sample rates, channels, codec info) using `@gatewai/media/server`, and injects the populated `Import` node result definition into the execution graph.
+- **Automation**: The CLI automatically reads the local file, extracts full metadata (width, height, FPS, duration, audio sample rates, channels, codec info) using `@gatewai.studio/media/server`, and injects the populated `Import` node result definition into the execution graph.
 
 ### Headless Custom Fonts (`fonts`)
 Headless rendering supports custom TTF fonts for text layers. Define them in the top-level `fonts` array:
@@ -457,3 +458,63 @@ For complete, multi-node production blueprints demonstrating keyframes, signal p
 * [Viral AI Social Short with Dynamic Layouts & Auto-Captions (12 Nodes)](file:///packages/artifex-skills/references/recipe-viral-social-short.md)
 * [Cinematic Grade & Layout Finishing with Custom Curves and Levels (11 Nodes)](file:///packages/artifex-skills/references/recipe-cinematic-style-transfer.md)
 * [Product Demo Video with Video-to-Music Scoring and Final Compositor Multiplexing (12 Nodes)](file:///packages/artifex-skills/references/recipe-product-demo.md)
+* [Master Guide for Building Gatewai Nodes: Metadata, Server, WebGPU Visuals & Audio DSP](file:///packages/artifex-skills/references/recipe-build-node.md)
+
+---
+
+## 11. Custom Nodes & Plugins
+
+Artifex supports loading custom nodes located directly on the local filesystem. This enables agents and developers to build bespoke visual, audio, or metadata transformation nodes and immediately use them in canvas workflow specifications. For full development guidance, see the [Master Guide for Building Gatewai Nodes](file:///packages/artifex-skills/references/recipe-build-node.md).
+
+### A. Scaffolding a New Custom Node
+To create a new custom node with boilerplate metadata, server processor, WebGPU renderer, audio processor, and `SKILL.md`:
+```bash
+artifex init-node node-my-filter --type MyFilter --category Media
+```
+This generates:
+- `package.json` with `@gatewai.studio/core`, `@gatewai.studio/node-sdk`, `@gatewai.studio/webgpu-renderers` dependencies.
+- `tsconfig.json` & `tsdown.config.ts`
+- `src/metadata.ts`: defines `type`, `displayName`, `category`, `handles`, and typed `configSchema` with bindable `configHandles`.
+- `src/server/processor.ts` & `src/server/index.ts`: defines backend execution logic implementing `NodeProcessor` with Inversify DI.
+- `src/renderers/webgpu-renderer.ts`, `src/renderers/audio-processor.ts` & `src/renderers/index.ts`: defines WebGPU visual shader & compute-based audio DSP logic.
+- `SKILL.md`: machine-readable instructions and parameter documentation for AI agents.
+
+### B. Using Custom Nodes in Workflow Specs
+Declare the local plugin path(s) inside the `"plugins"` array of your `spec.json`:
+```json
+{
+  "name": "Custom Filter Pipeline",
+  "plugins": [
+    "./node-my-filter"
+  ],
+  "nodes": [
+    {
+      "id": "input_1",
+      "type": "Import",
+      "config": { "file": "./input.png" }
+    },
+    {
+      "id": "filter_1",
+      "type": "MyFilter",
+      "config": { "strength": 2.5, "enabled": true }
+    },
+    {
+      "id": "export_1",
+      "type": "Export",
+      "config": { "file": "./output.png" }
+    }
+  ],
+  "edges": [
+    { "source": "input_1", "target": "filter_1" },
+    { "source": "filter_1", "target": "export_1" }
+  ]
+}
+```
+
+### C. CLI Plugin Flags
+Alternatively, pass plugin paths via CLI flags:
+```bash
+artifex validate spec.json --plugin ./node-my-filter
+artifex run spec.json --plugins ./node-my-filter,./node-another-filter
+artifex skill MyFilter --plugin ./node-my-filter
+```
